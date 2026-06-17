@@ -10,6 +10,7 @@ import SceneCell from "./journey-scenes/SceneCell";
 import SceneOrganelle from "./journey-scenes/SceneOrganelle";
 import SceneMolecularProcess from "./journey-scenes/SceneMolecularProcess";
 import SpatialAnchor from "./SpatialAnchor";
+import ScaleDepthLadder from "./ScaleDepthLadder";
 
 interface JourneyViewProps {
   journey: Journey;
@@ -25,14 +26,6 @@ const SCALE_LABEL: Record<BiologicalScale, string> = {
   "molecular-process": "Molecular Process",
 };
 
-const SCALE_COLOUR: Record<BiologicalScale, string> = {
-  organism:           "bg-green-100 text-green-800 border-green-200",
-  "organ-system":     "bg-blue-100 text-blue-800 border-blue-200",
-  organ:              "bg-violet-100 text-violet-800 border-violet-200",
-  cell:               "bg-orange-100 text-orange-800 border-orange-200",
-  organelle:          "bg-rose-100 text-rose-800 border-rose-200",
-  "molecular-process":"bg-amber-100 text-amber-800 border-amber-200",
-};
 
 const CONTROL_BADGE: Record<ControlType, { label: string; className: string }> = {
   "rate-limiting":   { label: "Rate-limiting",   className: "bg-amber-100 text-amber-700 border-amber-200" },
@@ -146,13 +139,8 @@ export default function JourneyView({ journey, onNavigateToModule }: JourneyView
       {/* ── Right: Main content ── */}
       <div className="flex-1 flex flex-col overflow-hidden min-w-0">
 
-        {/* Scale badge row */}
-        <div className="flex-shrink-0 bg-white border-b border-gray-100 px-4 py-2 flex items-center gap-3 flex-wrap">
-          <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border uppercase tracking-wider ${SCALE_COLOUR[step.scale]}`}>
-            {SCALE_LABEL[step.scale]}
-          </span>
-          <span className="text-xs text-gray-500 font-medium">{step.location}</span>
-        </div>
+        {/* Scale depth ladder */}
+        <ScaleDepthLadder scale={step.scale} location={step.location} />
 
         {/* Spatial anchor — persistent route map */}
         <SpatialAnchor currentStepId={step.id} />
