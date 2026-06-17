@@ -1,6 +1,6 @@
 "use client";
 
-import { NetworkNode, NodeType } from "@/types/network";
+import { NetworkNode, NodeType, EvidenceLevel } from "@/types/network";
 
 interface NodeDetailPanelProps {
   node: NetworkNode | null;
@@ -23,6 +23,27 @@ const typeLabels: Record<NodeType, string> = {
   disease: "Disease",
   hormone: "Hormone",
   mechanism: "Mechanism",
+};
+
+const evidenceLevelColors: Record<EvidenceLevel, string> = {
+  textbook: "bg-emerald-100 text-emerald-800",
+  review: "bg-sky-100 text-sky-800",
+  primary: "bg-violet-100 text-violet-800",
+  hypothesis: "bg-gray-100 text-gray-600",
+};
+
+const evidenceLevelLabels: Record<EvidenceLevel, string> = {
+  textbook: "Textbook",
+  review: "Review",
+  primary: "Primary",
+  hypothesis: "Hypothesis",
+};
+
+const evidenceLevelDescriptions: Record<EvidenceLevel, string> = {
+  textbook: "Established in standard biochemistry textbooks.",
+  review: "Described in peer-reviewed literature and clinical reviews.",
+  primary: "Supported by primary research studies.",
+  hypothesis: "Proposed relationship; not yet broadly established.",
 };
 
 export default function NodeDetailPanel({ node, onClose }: NodeDetailPanelProps) {
@@ -94,10 +115,24 @@ export default function NodeDetailPanel({ node, onClose }: NodeDetailPanelProps)
         </section>
 
         <section>
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">
-            Evidence Note
+          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            Evidence
           </h3>
-          <p className="text-sm text-gray-500 italic leading-relaxed">{node.evidenceNote}</p>
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span
+                className={`inline-block text-xs font-medium px-2 py-0.5 rounded-full ${evidenceLevelColors[node.evidenceLevel]}`}
+              >
+                {evidenceLevelLabels[node.evidenceLevel]}
+              </span>
+              <span className="text-xs text-gray-400">
+                {evidenceLevelDescriptions[node.evidenceLevel]}
+              </span>
+            </div>
+            <p className="text-xs text-gray-500 italic leading-relaxed">
+              {node.sourceNote}
+            </p>
+          </div>
         </section>
       </div>
 

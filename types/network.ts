@@ -6,6 +6,8 @@ export type NodeType =
   | "hormone"
   | "mechanism";
 
+export type EvidenceLevel = "textbook" | "review" | "primary" | "hypothesis";
+
 export interface NetworkNode {
   id: string;
   label: string;
@@ -14,6 +16,8 @@ export interface NetworkNode {
   connectedPathways: string[];
   diseaseRelevance: string;
   evidenceNote: string;
+  evidenceLevel: EvidenceLevel;
+  sourceNote: string;
   position: { x: number; y: number };
 }
 
@@ -23,6 +27,8 @@ export interface NetworkEdge {
   target: string;
   label?: string;
   animated?: boolean;
+  evidenceLevel: EvidenceLevel;
+  sourceNote: string;
 }
 
 export interface NetworkData {

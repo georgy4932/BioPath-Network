@@ -13,6 +13,9 @@ export const glucoseNetwork: NetworkData = {
         "Elevated blood glucose is the hallmark of diabetes mellitus. Impaired cellular glucose uptake is central to insulin resistance.",
       evidenceNote:
         "Well-established textbook biochemistry. [Placeholder for citation]",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook — source to be added.",
       position: { x: 400, y: 50 },
     },
     {
@@ -31,6 +34,9 @@ export const glucoseNetwork: NetworkData = {
         "Accumulation of glucose-6-phosphate is linked to glycogen storage diseases. Deficiency in its catabolism via the PPP is associated with G6PD deficiency.",
       evidenceNote:
         "Core metabolic intermediate. [Placeholder for citation]",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook — source to be added.",
       position: { x: 400, y: 220 },
     },
     {
@@ -42,7 +48,11 @@ export const glucoseNetwork: NetworkData = {
       connectedPathways: ["Glycolysis", "Gluconeogenesis", "Fructolysis"],
       diseaseRelevance:
         "Elevated fructose-6-phosphate flux is involved in the hexosamine biosynthetic pathway, which has been associated with insulin resistance.",
-      evidenceNote: "Established glycolytic intermediate. [Placeholder for citation]",
+      evidenceNote:
+        "Established glycolytic intermediate. [Placeholder for citation]",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook — source to be added.",
       position: { x: 400, y: 420 },
     },
     {
@@ -54,7 +64,11 @@ export const glucoseNetwork: NetworkData = {
       connectedPathways: ["Glycogenesis", "Glycogenolysis"],
       diseaseRelevance:
         "Glycogen storage diseases (e.g., von Gierke disease) result from defects in glycogen metabolism enzymes. In diabetes, impaired glycogen synthesis contributes to postprandial hyperglycaemia.",
-      evidenceNote: "Established storage polysaccharide. [Placeholder for citation]",
+      evidenceNote:
+        "Established storage polysaccharide. [Placeholder for citation]",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook — source to be added.",
       position: { x: 650, y: 220 },
     },
     {
@@ -69,7 +83,11 @@ export const glucoseNetwork: NetworkData = {
       ],
       diseaseRelevance:
         "Reduced ribose-5-phosphate production is seen when G6PD activity is low, limiting nucleotide synthesis in rapidly dividing cells.",
-      evidenceNote: "PPP product with established biosynthetic role. [Placeholder for citation]",
+      evidenceNote:
+        "PPP product with established biosynthetic role. [Placeholder for citation]",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook — source to be added.",
       position: { x: 100, y: 420 },
     },
     {
@@ -85,7 +103,11 @@ export const glucoseNetwork: NetworkData = {
       ],
       diseaseRelevance:
         "Insufficient NADPH production due to G6PD deficiency impairs the ability of red blood cells to neutralise oxidative stress, predisposing them to haemolysis.",
-      evidenceNote: "Key reducing cofactor. [Placeholder for citation]",
+      evidenceNote:
+        "Key reducing cofactor. [Placeholder for citation]",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook — source to be added.",
       position: { x: 100, y: 250 },
     },
     {
@@ -97,7 +119,11 @@ export const glucoseNetwork: NetworkData = {
       connectedPathways: ["Glutathione Metabolism", "Antioxidant Defence"],
       diseaseRelevance:
         "In G6PD-deficient red blood cells, low NADPH leads to depletion of reduced glutathione, leaving erythrocytes vulnerable to oxidative damage and haemolysis.",
-      evidenceNote: "Well-characterised antioxidant. [Placeholder for citation]",
+      evidenceNote:
+        "Well-characterised antioxidant. [Placeholder for citation]",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook — source to be added.",
       position: { x: 100, y: 100 },
     },
     {
@@ -109,7 +135,11 @@ export const glucoseNetwork: NetworkData = {
       connectedPathways: ["Pentose Phosphate Pathway"],
       diseaseRelevance:
         "Loss-of-function mutations in the G6PD gene cause G6PD deficiency, the most common enzyme deficiency worldwide, affecting approximately 400 million people.",
-      evidenceNote: "Enzyme function extensively characterised. [Placeholder for citation]",
+      evidenceNote:
+        "Enzyme function extensively characterised. [Placeholder for citation]",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Enzyme kinetics and structure characterised in primary literature — source to be added.",
       position: { x: 200, y: 340 },
     },
     {
@@ -126,6 +156,9 @@ export const glucoseNetwork: NetworkData = {
         "Results from loss-of-function mutations in the G6PD gene. Manifests as neonatal jaundice or episodic haemolytic anaemia. Confers partial protection against Plasmodium falciparum malaria.",
       evidenceNote:
         "Well-documented genetic disorder. [Placeholder for citation]",
+      evidenceLevel: "review",
+      sourceNote:
+        "Extensively reviewed in clinical genetics literature — source to be added.",
       position: { x: -150, y: 350 },
     },
     {
@@ -139,6 +172,9 @@ export const glucoseNetwork: NetworkData = {
         "Central mechanism linking G6PD deficiency to haemolytic anaemia. Also associated with diabetic complications, where chronic hyperglycaemia increases ROS production.",
       evidenceNote:
         "Mechanistic link is established in erythrocyte biology. [Placeholder for citation]",
+      evidenceLevel: "review",
+      sourceNote:
+        "Mechanistic role described in review literature on erythrocyte biology — source to be added.",
       position: { x: -150, y: 160 },
     },
     {
@@ -152,6 +188,9 @@ export const glucoseNetwork: NetworkData = {
         "A key clinical consequence of G6PD deficiency when oxidative stress is triggered. Episodes are often precipitated by oxidant drugs, infections, or dietary factors.",
       evidenceNote:
         "Direct clinical consequence described in literature. [Placeholder for citation]",
+      evidenceLevel: "review",
+      sourceNote:
+        "Well-reviewed clinical outcome in G6PD deficiency literature — source to be added.",
       position: { x: -150, y: -30 },
     },
     {
@@ -163,7 +202,11 @@ export const glucoseNetwork: NetworkData = {
       connectedPathways: ["Glucose Uptake", "Glycogenesis", "Glycolysis"],
       diseaseRelevance:
         "Insufficient insulin secretion (type 1 diabetes) or impaired insulin signalling (type 2 diabetes) results in hyperglycaemia and the metabolic dysregulation of diabetes mellitus.",
-      evidenceNote: "Hormone function well-established. [Placeholder for citation]",
+      evidenceNote:
+        "Hormone function well-established. [Placeholder for citation]",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry and endocrinology textbook — source to be added.",
       position: { x: 650, y: 50 },
     },
     {
@@ -175,7 +218,11 @@ export const glucoseNetwork: NetworkData = {
       connectedPathways: ["Glycogenolysis", "Gluconeogenesis"],
       diseaseRelevance:
         "Dysregulated glucagon secretion contributes to fasting hyperglycaemia in type 2 diabetes. Glucagon receptor antagonists are under investigation as therapeutic targets.",
-      evidenceNote: "Counter-regulatory role well-established. [Placeholder for citation]",
+      evidenceNote:
+        "Counter-regulatory role well-established. [Placeholder for citation]",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry and endocrinology textbook — source to be added.",
       position: { x: 650, y: 390 },
     },
     {
@@ -193,6 +240,9 @@ export const glucoseNetwork: NetworkData = {
         "Associated with altered glucose handling and dysregulated glucose homeostasis. Downstream changes in glucose-6-phosphate flux — including reduced pentose phosphate pathway activity — have been observed in diabetic contexts.",
       evidenceNote:
         "Established metabolic disease. [Placeholder for citation]",
+      evidenceLevel: "review",
+      sourceNote:
+        "Extensively reviewed in metabolic disease literature — source to be added.",
       position: { x: 650, y: 540 },
     },
   ],
@@ -204,24 +254,36 @@ export const glucoseNetwork: NetworkData = {
       target: "glucose-6-phosphate",
       label: "phosphorylation (hexokinase)",
       animated: true,
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook reaction — source to be added.",
     },
     {
       id: "e-g6p-f6p",
       source: "glucose-6-phosphate",
       target: "fructose-6-phosphate",
       label: "isomerisation (phosphoglucose isomerase)",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook reaction — source to be added.",
     },
     {
       id: "e-g6p-glycogen",
       source: "glucose-6-phosphate",
       target: "glycogen",
       label: "glycogenesis",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook relationship — source to be added.",
     },
     {
       id: "e-glycogen-g6p",
       source: "glycogen",
       target: "glucose-6-phosphate",
       label: "glycogenolysis",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook relationship — source to be added.",
     },
     {
       id: "e-g6p-nadph",
@@ -229,12 +291,18 @@ export const glucoseNetwork: NetworkData = {
       target: "nadph",
       label: "pentose phosphate pathway (via G6PD)",
       animated: true,
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook reaction — source to be added.",
     },
     {
       id: "e-g6p-ribose",
       source: "glucose-6-phosphate",
       target: "ribose-5-phosphate",
       label: "pentose phosphate pathway",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook reaction — source to be added.",
     },
     {
       id: "e-nadph-glutathione",
@@ -242,66 +310,99 @@ export const glucoseNetwork: NetworkData = {
       target: "glutathione",
       label: "regenerates reduced glutathione (GSH)",
       animated: true,
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook relationship — source to be added.",
     },
     {
       id: "e-glutathione-oxidativestress",
       source: "glutathione",
       target: "oxidative-stress",
       label: "neutralises reactive oxygen species (ROS)",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard biochemistry textbook relationship — source to be added.",
     },
     {
       id: "e-g6pddef-g6pd",
       source: "g6pd-deficiency",
       target: "g6pd",
       label: "reduces activity",
+      evidenceLevel: "primary",
+      sourceNote:
+        "Established in primary enzymatic and genetic studies — source to be added.",
     },
     {
       id: "e-g6pddef-oxidativestress",
       source: "g6pd-deficiency",
       target: "oxidative-stress",
       label: "associated with",
+      evidenceLevel: "review",
+      sourceNote:
+        "Described in review literature on G6PD deficiency — source to be added.",
     },
     {
       id: "e-oxidativestress-hemolytic",
       source: "oxidative-stress",
       target: "hemolytic-anemia",
       label: "can precipitate",
+      evidenceLevel: "review",
+      sourceNote:
+        "Described in review literature on haemolytic anaemia in G6PD deficiency — source to be added.",
     },
     {
       id: "e-insulin-glucose",
       source: "insulin",
       target: "glucose",
       label: "promotes uptake",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard endocrinology and biochemistry textbook — source to be added.",
     },
     {
       id: "e-insulin-glycogen",
       source: "insulin",
       target: "glycogen",
       label: "promotes synthesis",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard endocrinology and biochemistry textbook — source to be added.",
     },
     {
       id: "e-glucagon-glycogen",
       source: "glucagon",
       target: "glycogen",
       label: "promotes breakdown",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard endocrinology and biochemistry textbook — source to be added.",
     },
     {
       id: "e-glucagon-glucose",
       source: "glucagon",
       target: "glucose",
       label: "raises blood glucose",
+      evidenceLevel: "textbook",
+      sourceNote:
+        "Standard endocrinology and biochemistry textbook — source to be added.",
     },
     {
       id: "e-diabetes-glucose",
       source: "diabetes-mellitus",
       target: "glucose",
       label: "impairs regulation of",
+      evidenceLevel: "review",
+      sourceNote:
+        "Described in review literature on diabetes pathophysiology — source to be added.",
     },
     {
       id: "e-insulin-diabetes",
       source: "insulin",
       target: "diabetes-mellitus",
       label: "deficiency linked to",
+      evidenceLevel: "review",
+      sourceNote:
+        "Described in review literature on diabetes aetiology — source to be added.",
     },
   ],
 };
