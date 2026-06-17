@@ -7,85 +7,90 @@ export default function MetabolicNetworkVisual() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* ── Edges ── */}
-        {/* Glucose → G6P */}
-        <line x1="120" y1="100" x2="220" y2="155" stroke="#22d3ee" strokeWidth="1" strokeOpacity="0.35" />
-        {/* G6P → Glycolysis */}
-        <line x1="220" y1="155" x2="300" y2="190" stroke="#22d3ee" strokeWidth="1" strokeOpacity="0.35" />
-        {/* G6P → Krebs */}
-        <line x1="220" y1="155" x2="300" y2="110" stroke="#a78bfa" strokeWidth="1.5" strokeOpacity="0.4" />
-        {/* Glycolysis → Pyruvate */}
-        <line x1="300" y1="190" x2="370" y2="240" stroke="#22d3ee" strokeWidth="1" strokeOpacity="0.35" />
-        {/* Pyruvate → Krebs */}
-        <line x1="370" y1="240" x2="300" y2="110" stroke="#a78bfa" strokeWidth="1" strokeOpacity="0.3" />
-        {/* Krebs → NADH */}
-        <line x1="300" y1="110" x2="430" y2="100" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.4" />
-        {/* Krebs → FADH₂ */}
-        <line x1="300" y1="110" x2="420" y2="155" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.4" />
-        {/* NADH → ETC */}
-        <line x1="430" y1="100" x2="510" y2="170" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" />
-        {/* FADH₂ → ETC */}
-        <line x1="420" y1="155" x2="510" y2="170" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" />
-        {/* O₂ → ETC */}
-        <line x1="480" y1="280" x2="510" y2="170" stroke="#34d399" strokeWidth="1.5" strokeOpacity="0.4" />
-        {/* ETC → ATP */}
-        <line x1="510" y1="170" x2="510" y2="290" stroke="#22d3ee" strokeWidth="2" strokeOpacity="0.5" />
-        {/* Beta-ox → Krebs */}
-        <line x1="150" y1="260" x2="300" y2="110" stroke="#64748b" strokeWidth="1" strokeOpacity="0.25" strokeDasharray="4 3" />
+        {/* ── Main carbohydrate chain: Glucose → G6P → Glycolysis → Pyruvate → Acetyl-CoA → Krebs ── */}
+        <line x1="60"  y1="80"  x2="145" y2="110" stroke="#22d3ee" strokeWidth="1.5" strokeOpacity="0.45" />
+        <line x1="145" y1="110" x2="235" y2="150" stroke="#22d3ee" strokeWidth="1.5" strokeOpacity="0.45" />
+        <line x1="235" y1="150" x2="295" y2="200" stroke="#22d3ee" strokeWidth="1.5" strokeOpacity="0.45" />
+        <line x1="295" y1="200" x2="350" y2="170" stroke="#a78bfa" strokeWidth="1.5" strokeOpacity="0.45" />
+        <line x1="350" y1="170" x2="360" y2="120" stroke="#a78bfa" strokeWidth="1.5" strokeOpacity="0.5" />
+
+        {/* ── Krebs → NADH / FADH₂ ── */}
+        <line x1="360" y1="120" x2="450" y2="90"  stroke="#f59e0b" strokeWidth="1.2" strokeOpacity="0.45" />
+        <line x1="360" y1="120" x2="455" y2="155" stroke="#f59e0b" strokeWidth="1.2" strokeOpacity="0.45" />
+
+        {/* ── NADH / FADH₂ → ETC ── */}
+        <line x1="450" y1="90"  x2="530" y2="175" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.45" />
+        <line x1="455" y1="155" x2="530" y2="175" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.45" />
+
+        {/* ── O₂ → ETC ── */}
+        <line x1="505" y1="290" x2="530" y2="175" stroke="#34d399" strokeWidth="1.5" strokeOpacity="0.45" />
+
+        {/* ── ETC → ATP ── */}
+        <line x1="530" y1="175" x2="530" y2="305" stroke="#22d3ee" strokeWidth="2"   strokeOpacity="0.55" />
+
+        {/* ── Coming-soon feeders (dashed, muted) ── */}
+        {/* Beta-ox → Acetyl-CoA */}
+        <line x1="100" y1="270" x2="350" y2="170" stroke="#475569" strokeWidth="1" strokeOpacity="0.3" strokeDasharray="4 3" />
         {/* AAs → Krebs */}
-        <line x1="190" y1="310" x2="300" y2="110" stroke="#64748b" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="4 3" />
+        <line x1="200" y1="315" x2="360" y2="120" stroke="#475569" strokeWidth="1" strokeOpacity="0.25" strokeDasharray="4 3" />
 
         {/* ── Krebs halo ── */}
-        <circle cx="300" cy="110" r="32" fill="#7c3aed" fillOpacity="0.08" stroke="#a78bfa" strokeWidth="1.5" strokeOpacity="0.4" />
+        <circle cx="360" cy="120" r="30" fill="#7c3aed" fillOpacity="0.07" stroke="#a78bfa" strokeWidth="1.5" strokeOpacity="0.35" />
 
         {/* ── Nodes ── */}
+
         {/* Glucose */}
-        <circle cx="120" cy="100" r="10" fill="#0f172a" stroke="#22d3ee" strokeWidth="1.5" />
-        <text x="120" y="85" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">Glucose</text>
+        <circle cx="60"  cy="80"  r="10" fill="#0f172a" stroke="#22d3ee" strokeWidth="1.5" />
+        <text x="60"  y="66"  textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">Glucose</text>
 
         {/* G6P */}
-        <circle cx="220" cy="155" r="9" fill="#0f172a" stroke="#22d3ee" strokeWidth="1.5" />
-        <text x="220" y="141" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">G6P</text>
+        <circle cx="145" cy="110" r="9"  fill="#0f172a" stroke="#22d3ee" strokeWidth="1.5" />
+        <text x="145" y="97"  textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">G6P</text>
 
         {/* Glycolysis */}
-        <circle cx="300" cy="190" r="11" fill="#0f172a" stroke="#38bdf8" strokeWidth="1.5" />
-        <text x="300" y="211" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">Glycolysis</text>
+        <circle cx="235" cy="150" r="12" fill="#0f172a" stroke="#38bdf8" strokeWidth="1.5" />
+        <text x="235" y="172" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">Glycolysis</text>
 
-        {/* Pyruvate */}
-        <circle cx="370" cy="240" r="8" fill="#0f172a" stroke="#22d3ee" strokeWidth="1.5" />
-        <text x="370" y="258" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">Pyruvate</text>
+        {/* Pyruvate / Acetyl-CoA — intermediate junction node */}
+        <circle cx="295" cy="200" r="8"  fill="#0f172a" stroke="#a78bfa" strokeWidth="1.5" strokeOpacity="0.7" />
+        <text x="295" y="216" textAnchor="middle" fill="#94a3b8" fontSize="8" fontFamily="system-ui">Pyruvate</text>
 
-        {/* Krebs — centre hub */}
-        <circle cx="300" cy="110" r="16" fill="#1e1b4b" stroke="#a78bfa" strokeWidth="2" />
-        <text x="300" y="95" textAnchor="middle" fill="#c4b5fd" fontSize="9" fontFamily="system-ui" fontWeight="600">Krebs</text>
+        {/* Acetyl-CoA label on the Krebs-entry node */}
+        <circle cx="350" cy="170" r="9"  fill="#0f172a" stroke="#a78bfa" strokeWidth="1.5" />
+        <text x="350" y="186" textAnchor="middle" fill="#94a3b8" fontSize="8" fontFamily="system-ui">Acetyl-CoA</text>
+
+        {/* Krebs — hub */}
+        <circle cx="360" cy="120" r="17" fill="#1e1b4b" stroke="#a78bfa" strokeWidth="2" />
+        <text x="360" y="116" textAnchor="middle" fill="#c4b5fd" fontSize="9" fontFamily="system-ui" fontWeight="600">Krebs</text>
+        <text x="360" y="127" textAnchor="middle" fill="#7c3aed" fontSize="7" fontFamily="system-ui">cycle</text>
 
         {/* NADH */}
-        <circle cx="430" cy="100" r="8" fill="#0f172a" stroke="#f59e0b" strokeWidth="1.5" />
-        <text x="430" y="87" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">NADH</text>
+        <circle cx="450" cy="90"  r="8"  fill="#0f172a" stroke="#f59e0b" strokeWidth="1.5" />
+        <text x="450" y="77"  textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">NADH</text>
 
         {/* FADH₂ */}
-        <circle cx="420" cy="155" r="8" fill="#0f172a" stroke="#f59e0b" strokeWidth="1.5" />
-        <text x="445" y="162" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">FADH₂</text>
-
-        {/* O₂ */}
-        <circle cx="480" cy="280" r="9" fill="#0f172a" stroke="#34d399" strokeWidth="1.5" />
-        <text x="480" y="298" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">O₂</text>
+        <circle cx="455" cy="155" r="8"  fill="#0f172a" stroke="#f59e0b" strokeWidth="1.5" />
+        <text x="455" y="172" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">FADH₂</text>
 
         {/* ETC */}
-        <circle cx="510" cy="170" r="13" fill="#0f172a" stroke="#22d3ee" strokeWidth="1.5" />
-        <text x="510" y="155" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">ETC</text>
+        <circle cx="530" cy="175" r="13" fill="#0f172a" stroke="#22d3ee" strokeWidth="1.5" />
+        <text x="530" y="161" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">ETC</text>
+
+        {/* O₂ */}
+        <circle cx="505" cy="290" r="9"  fill="#0f172a" stroke="#34d399" strokeWidth="1.5" />
+        <text x="505" y="307" textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">O₂</text>
 
         {/* ATP */}
-        <circle cx="510" cy="290" r="14" fill="#0c1a26" stroke="#22d3ee" strokeWidth="2" />
-        <text x="510" y="295" textAnchor="middle" fill="#22d3ee" fontSize="10" fontFamily="system-ui" fontWeight="600">ATP</text>
+        <circle cx="530" cy="305" r="14" fill="#0c1a26" stroke="#22d3ee" strokeWidth="2" />
+        <text x="530" y="310" textAnchor="middle" fill="#22d3ee" fontSize="10" fontFamily="system-ui" fontWeight="600">ATP</text>
 
-        {/* Beta-ox (muted) */}
-        <circle cx="150" cy="260" r="8" fill="#0f172a" stroke="#475569" strokeWidth="1.5" strokeOpacity="0.5" />
-        <text x="120" y="268" textAnchor="middle" fill="#475569" fontSize="8" fontFamily="system-ui">β-ox</text>
+        {/* Beta-ox (muted, coming soon) */}
+        <circle cx="100" cy="270" r="8"  fill="#0f172a" stroke="#475569" strokeWidth="1.5" strokeOpacity="0.5" />
+        <text x="75"  cy="270" y="285"  textAnchor="middle" fill="#475569" fontSize="8" fontFamily="system-ui">β-ox</text>
 
-        {/* AAs (muted) */}
-        <circle cx="190" cy="310" r="8" fill="#0f172a" stroke="#475569" strokeWidth="1.5" strokeOpacity="0.5" />
-        <text x="190" y="328" textAnchor="middle" fill="#475569" fontSize="8" fontFamily="system-ui">AAs</text>
+        {/* AAs (muted, coming soon) */}
+        <circle cx="200" cy="315" r="8"  fill="#0f172a" stroke="#475569" strokeWidth="1.5" strokeOpacity="0.5" />
+        <text x="200" y="332" textAnchor="middle" fill="#475569" fontSize="8" fontFamily="system-ui">AAs</text>
       </svg>
     </div>
   );
