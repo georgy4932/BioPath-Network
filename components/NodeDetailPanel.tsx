@@ -29,7 +29,14 @@ export default function NodeDetailPanel({ node, onClose }: NodeDetailPanelProps)
   if (!node) return null;
 
   return (
-    <aside className="fixed top-0 right-0 h-full w-80 bg-white border-l border-gray-200 shadow-lg z-50 flex flex-col overflow-y-auto">
+    <>
+      {/* Translucent backdrop — visible on all sizes, closes panel on click */}
+      <div
+        className="fixed inset-0 bg-black/20 z-40"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <aside className="fixed top-0 right-0 h-full w-full sm:w-80 bg-white border-l border-gray-200 shadow-lg z-50 flex flex-col overflow-y-auto">
       <div className="flex items-start justify-between p-4 border-b border-gray-200">
         <h2 className="text-base font-semibold text-gray-900 leading-tight pr-4">
           {node.label}
@@ -100,5 +107,6 @@ export default function NodeDetailPanel({ node, onClose }: NodeDetailPanelProps)
         </p>
       </div>
     </aside>
+    </>
   );
 }

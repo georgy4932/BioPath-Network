@@ -22,6 +22,7 @@ const NODE_TYPE_LEGEND: { type: string; label: string; color: string }[] = [
   { type: "disease", label: "Disease", color: "bg-red-200" },
   { type: "hormone", label: "Hormone", color: "bg-yellow-200" },
   { type: "mechanism", label: "Mechanism", color: "bg-orange-200" },
+  { type: "pathway", label: "Pathway", color: "bg-purple-200" },
 ];
 
 export default function HomePage() {
@@ -72,7 +73,7 @@ export default function HomePage() {
             ))}
           </div>
           <p className="text-xs text-gray-400">
-            Click a node to view details. Scroll to zoom, drag to pan.
+            Tap or click a node · Scroll or pinch to zoom · Drag to pan
           </p>
         </div>
       </div>
@@ -84,12 +85,12 @@ export default function HomePage() {
       >
         <BiochemGraph data={glucoseNetwork} onNodeSelect={handleNodeSelect} />
 
-        {/* Hub badge */}
+        {/* Hub badge — label derived from data */}
         <div className="absolute top-3 left-3 bg-white border border-gray-200 rounded-md px-3 py-1.5 shadow-sm pointer-events-none">
           <p className="text-xs text-gray-500">
             Hub:{" "}
             <span className="font-medium text-gray-800">
-              Glucose-6-phosphate
+              {glucoseNetwork.nodes.find((n) => n.id === "glucose-6-phosphate")?.label}
             </span>
           </p>
         </div>

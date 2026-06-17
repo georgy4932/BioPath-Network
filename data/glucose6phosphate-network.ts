@@ -123,7 +123,7 @@ export const glucoseNetwork: NetworkData = {
         "Glutathione Metabolism",
       ],
       diseaseRelevance:
-        "Directly caused by G6PD enzyme deficiency. Manifests as neonatal jaundice or episodic haemolytic anaemia. Confers partial protection against Plasmodium falciparum malaria.",
+        "Results from loss-of-function mutations in the G6PD gene. Manifests as neonatal jaundice or episodic haemolytic anaemia. Confers partial protection against Plasmodium falciparum malaria.",
       evidenceNote:
         "Well-documented genetic disorder. [Placeholder for citation]",
       position: { x: -150, y: 350 },
@@ -190,7 +190,7 @@ export const glucoseNetwork: NetworkData = {
         "Gluconeogenesis",
       ],
       diseaseRelevance:
-        "Directly linked to impaired glucose-6-phosphate metabolism and dysregulated glucose homeostasis. Individuals with diabetes may also have altered PPP activity.",
+        "Associated with altered glucose handling and dysregulated glucose homeostasis. Downstream changes in glucose-6-phosphate flux — including reduced pentose phosphate pathway activity — have been observed in diabetic contexts.",
       evidenceNote:
         "Established metabolic disease. [Placeholder for citation]",
       position: { x: 650, y: 540 },
@@ -209,7 +209,7 @@ export const glucoseNetwork: NetworkData = {
       id: "e-g6p-f6p",
       source: "glucose-6-phosphate",
       target: "fructose-6-phosphate",
-      label: "isomerisation (PGI)",
+      label: "isomerisation (phosphoglucose isomerase)",
     },
     {
       id: "e-g6p-glycogen",
@@ -224,36 +224,30 @@ export const glucoseNetwork: NetworkData = {
       label: "glycogenolysis",
     },
     {
-      id: "e-g6pd-g6p",
-      source: "g6pd",
-      target: "glucose-6-phosphate",
-      label: "catalyses",
-    },
-    {
       id: "e-g6p-nadph",
       source: "glucose-6-phosphate",
       target: "nadph",
-      label: "PPP (via G6PD)",
+      label: "pentose phosphate pathway (via G6PD)",
       animated: true,
     },
     {
       id: "e-g6p-ribose",
       source: "glucose-6-phosphate",
       target: "ribose-5-phosphate",
-      label: "PPP",
+      label: "pentose phosphate pathway",
     },
     {
       id: "e-nadph-glutathione",
       source: "nadph",
       target: "glutathione",
-      label: "regenerates GSH",
+      label: "regenerates reduced glutathione (GSH)",
       animated: true,
     },
     {
       id: "e-glutathione-oxidativestress",
       source: "glutathione",
       target: "oxidative-stress",
-      label: "neutralises ROS",
+      label: "neutralises reactive oxygen species (ROS)",
     },
     {
       id: "e-g6pddef-g6pd",
@@ -271,7 +265,7 @@ export const glucoseNetwork: NetworkData = {
       id: "e-oxidativestress-hemolytic",
       source: "oxidative-stress",
       target: "hemolytic-anemia",
-      label: "triggers",
+      label: "can precipitate",
     },
     {
       id: "e-insulin-glucose",
