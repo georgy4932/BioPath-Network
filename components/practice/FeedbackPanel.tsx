@@ -14,6 +14,8 @@ interface FeedbackPanelProps {
   answer: AnswerValue;
   onNext: () => void;
   isLast: boolean;
+  onNavigateToJourneyStep?: (stepId: string) => void;
+  onNavigateToModule?: (moduleId: string) => void;
 }
 
 export default function FeedbackPanel({
@@ -21,6 +23,8 @@ export default function FeedbackPanel({
   answer,
   onNext,
   isLast,
+  onNavigateToJourneyStep,
+  onNavigateToModule,
 }: FeedbackPanelProps) {
   const result = getResult(question, answer);
   const isSelfAssess = question.type === "short-answer" || question.type === "mechanism";
@@ -118,6 +122,28 @@ export default function FeedbackPanel({
         </p>
         <p className="text-sm text-blue-900 leading-relaxed">{question.explanation}</p>
       </div>
+
+      {/* Concept links */}
+      {(question.relatedJourneyStepId || question.relatedLearningModuleId) && (
+        <div className="flex flex-col md:flex-row gap-2">
+          {question.relatedJourneyStepId && onNavigateToJourneyStep && (
+            <button
+              onClick={() => onNavigateToJourneyStep(question.relatedJourneyStepId!)}
+              className="flex-1 py-2 px-3 text-sm font-medium rounded-md border border-amber-300 bg-amber-50 text-amber-800 hover:bg-amber-100 cursor-pointer transition-colors"
+            >
+              Open Journey Step →
+            </button>
+          )}
+          {question.relatedLearningModuleId && onNavigateToModule && (
+            <button
+              onClick={() => onNavigateToModule(question.relatedLearningModuleId!)}
+              className="flex-1 py-2 px-3 text-sm font-medium rounded-md border border-blue-200 bg-white text-blue-700 hover:bg-blue-50 cursor-pointer transition-colors"
+            >
+              Open Learning Module →
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Next / Finish */}
       <button

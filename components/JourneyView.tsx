@@ -8,6 +8,8 @@ import JourneyStepDetail from "./JourneyStepDetail";
 interface JourneyViewProps {
   journey: Journey;
   onNavigateToModule?: (moduleId: string) => void;
+  requestedStepId?: string | null;
+  onStepRequested?: () => void;
 }
 
 const SCALE_LABEL: Record<BiologicalScale, string> = {
@@ -21,7 +23,7 @@ const SCALE_LABEL: Record<BiologicalScale, string> = {
 
 const AUTO_PLAY_MS = 4000;
 
-export default function JourneyView({ journey, onNavigateToModule }: JourneyViewProps) {
+export default function JourneyView({ journey, onNavigateToModule, requestedStepId, onStepRequested }: JourneyViewProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
 
@@ -45,6 +47,13 @@ export default function JourneyView({ journey, onNavigateToModule }: JourneyView
     setPlaying(false);
     setCurrentIndex(0);
   }, []);
+
+  useEffect(() => {
+    if (!requestedStepId) return;
+    const idx = journey.steps.findIndex((s) => s.id === requestedStepId);
+    if (idx !== -1) goTo(idx);
+    onStepRequested?.();
+  }, [requestedStepId, journey.steps, goTo, onStepRequested]);
 
   useEffect(() => {
     if (!playing) return;

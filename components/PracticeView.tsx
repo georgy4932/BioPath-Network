@@ -8,7 +8,12 @@ import FeedbackPanel from "./practice/FeedbackPanel";
 
 const QUESTION_SETS: QuestionSet[] = [carbohydratePractice];
 
-export default function PracticeView() {
+interface PracticeViewProps {
+  onNavigateToJourneyStep?: (stepId: string) => void;
+  onNavigateToModule?: (moduleId: string) => void;
+}
+
+export default function PracticeView({ onNavigateToJourneyStep, onNavigateToModule }: PracticeViewProps) {
   const [activeSet, setActiveSet] = useState<QuestionSet | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [submitted, setSubmitted] = useState(false);
@@ -141,6 +146,8 @@ export default function PracticeView() {
           answer={lastAnswer}
           onNext={handleNext}
           isLast={isLast}
+          onNavigateToJourneyStep={onNavigateToJourneyStep}
+          onNavigateToModule={onNavigateToModule}
         />
       )}
     </div>
