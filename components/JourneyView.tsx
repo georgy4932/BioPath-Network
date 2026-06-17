@@ -8,6 +8,7 @@ import JourneyStepDetail from "./JourneyStepDetail";
 interface JourneyViewProps {
   journey: Journey;
   onNavigateToModule?: (moduleId: string) => void;
+  onNavigateToCrossJourneyStep?: (journeyId: string, stepId: string) => void;
   requestedStepId?: string | null;
   onStepRequested?: () => void;
 }
@@ -23,12 +24,19 @@ const SCALE_LABEL: Record<BiologicalScale, string> = {
 
 const AUTO_PLAY_MS = 4000;
 
-export default function JourneyView({ journey, onNavigateToModule, requestedStepId, onStepRequested }: JourneyViewProps) {
+export default function JourneyView({
+  journey,
+  onNavigateToModule,
+  onNavigateToCrossJourneyStep,
+  requestedStepId,
+  onStepRequested,
+}: JourneyViewProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
 
-  const step = journey.steps[currentIndex];
   const total = journey.steps.length;
+  const safeIndex = Math.min(currentIndex, total - 1);
+  const step = journey.steps[safeIndex];
 
   const goTo = useCallback((i: number) => {
     setCurrentIndex(Math.max(0, Math.min(total - 1, i)));
@@ -47,6 +55,12 @@ export default function JourneyView({ journey, onNavigateToModule, requestedStep
     setPlaying(false);
     setCurrentIndex(0);
   }, []);
+
+  // Reset to step 0 when the active journey changes
+  useEffect(() => {
+    setCurrentIndex(0);
+    setPlaying(false);
+  }, [journey.id]);
 
   useEffect(() => {
     if (!requestedStepId) return;
@@ -82,7 +96,7 @@ export default function JourneyView({ journey, onNavigateToModule, requestedStep
         <div className="flex-1 overflow-y-auto">
           <JourneyMap
             steps={journey.steps}
-            currentIndex={currentIndex}
+            currentIndex={safeIndex}
             onSelectStep={goTo}
           />
         </div>
@@ -94,8 +108,9 @@ export default function JourneyView({ journey, onNavigateToModule, requestedStep
         <div className="flex-1 overflow-y-auto">
           <JourneyStepDetail
             step={step}
-            stepNumber={currentIndex + 1}
+            stepNumber={safeIndex + 1}
             onNavigateToModule={onNavigateToModule}
+            onNavigateToCrossJourneyStep={onNavigateToCrossJourneyStep}
           />
         </div>
 
@@ -104,7 +119,7 @@ export default function JourneyView({ journey, onNavigateToModule, requestedStep
           <div className="flex items-center gap-2 max-w-2xl">
             <button
               onClick={handlePrev}
-              disabled={currentIndex === 0}
+              disabled={safeIndex === 0}
               aria-label="Previous step"
               className="px-3 py-2 text-xs font-medium rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
             >
@@ -121,7 +136,7 @@ export default function JourneyView({ journey, onNavigateToModule, requestedStep
 
             <button
               onClick={handleNext}
-              disabled={currentIndex === total - 1}
+              disabled={safeIndex === total - 1}
               aria-label="Next step"
               className="px-3 py-2 text-xs font-medium rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
             >
@@ -138,7 +153,7 @@ export default function JourneyView({ journey, onNavigateToModule, requestedStep
           </div>
 
           <p className="text-xs text-gray-400 mt-1.5">
-            Step {currentIndex + 1} of {total} · {SCALE_LABEL[step.scale]}
+            Step {safeIndex + 1} of {total} · {SCALE_LABEL[step.scale]}
           </p>
         </div>
       </div>

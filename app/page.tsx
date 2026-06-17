@@ -8,17 +8,23 @@ import JourneyView from "@/components/JourneyView";
 import PracticeView from "@/components/PracticeView";
 import { learningModules } from "@/data/learning-modules";
 import { carbohydrateJourney } from "@/data/carbohydrate-journey";
+import { oxygenJourney } from "@/data/oxygen-journey";
 import { LearningStep } from "@/types/learning";
+import { Journey } from "@/types/journey";
 
 type ActiveTab = "learning" | "journey" | "practice";
+
+const JOURNEYS: Journey[] = [carbohydrateJourney, oxygenJourney];
 
 export default function HomePage() {
   const [activeModuleId, setActiveModuleId] = useState(learningModules[0].id);
   const [activeTab, setActiveTab] = useState<ActiveTab>("learning");
   const [selectedStep, setSelectedStep] = useState<LearningStep | null>(null);
+  const [activeJourneyId, setActiveJourneyId] = useState(carbohydrateJourney.id);
   const [requestedJourneyStepId, setRequestedJourneyStepId] = useState<string | null>(null);
 
   const activeModule = learningModules.find((m) => m.id === activeModuleId)!;
+  const activeJourney = JOURNEYS.find((j) => j.id === activeJourneyId) ?? JOURNEYS[0];
 
   const handleSelectModule = useCallback((id: string) => {
     setActiveModuleId(id);
@@ -36,16 +42,36 @@ export default function HomePage() {
     setSelectedStep(null);
   }, []);
 
+  const handleSelectJourney = useCallback((id: string) => {
+    setActiveJourneyId(id);
+    setRequestedJourneyStepId(null);
+  }, []);
+
   const handleNavigateToModule = useCallback((moduleId: string) => {
     setActiveTab("learning");
     setActiveModuleId(moduleId);
     setSelectedStep(null);
   }, []);
 
+  // Navigate to a journey step — resolves the correct journey from the step ID
   const handleNavigateToJourneyStep = useCallback((stepId: string) => {
+    const journey = JOURNEYS.find((j) => j.steps.some((s) => s.id === stepId));
+    if (journey) setActiveJourneyId(journey.id);
     setActiveTab("journey");
     setRequestedJourneyStepId(stepId);
     setSelectedStep(null);
+  }, []);
+
+  // Navigate to a specific step in a specific journey (cross-journey links)
+  const handleNavigateToCrossJourneyStep = useCallback((journeyId: string, stepId: string) => {
+    setActiveJourneyId(journeyId);
+    setActiveTab("journey");
+    setRequestedJourneyStepId(stepId);
+    setSelectedStep(null);
+  }, []);
+
+  const handleClearJourneyStepRequest = useCallback(() => {
+    setRequestedJourneyStepId(null);
   }, []);
 
   return (
@@ -127,13 +153,32 @@ export default function HomePage() {
               </div>
             </div>
           ) : activeTab === "journey" ? (
-            <div className="flex-1 overflow-hidden" style={{ minHeight: 0 }}>
-              <JourneyView
-                journey={carbohydrateJourney}
-                onNavigateToModule={handleNavigateToModule}
-                requestedStepId={requestedJourneyStepId}
-                onStepRequested={() => setRequestedJourneyStepId(null)}
-              />
+            <div className="flex-1 flex flex-col overflow-hidden" style={{ minHeight: 0 }}>
+              {/* Journey selector */}
+              <div className="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-white border-b border-gray-100">
+                {JOURNEYS.map((j) => (
+                  <button
+                    key={j.id}
+                    onClick={() => handleSelectJourney(j.id)}
+                    className={`px-3 py-1 text-xs font-medium rounded-full border transition-colors cursor-pointer ${
+                      activeJourneyId === j.id
+                        ? "bg-blue-600 border-blue-600 text-white"
+                        : "border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50"
+                    }`}
+                  >
+                    {j.molecule}
+                  </button>
+                ))}
+              </div>
+              <div className="flex-1 overflow-hidden" style={{ minHeight: 0 }}>
+                <JourneyView
+                  journey={activeJourney}
+                  onNavigateToModule={handleNavigateToModule}
+                  onNavigateToCrossJourneyStep={handleNavigateToCrossJourneyStep}
+                  requestedStepId={requestedJourneyStepId}
+                  onStepRequested={handleClearJourneyStepRequest}
+                />
+              </div>
             </div>
           ) : (
             <div className="flex-1 overflow-hidden" style={{ minHeight: 0 }}>
