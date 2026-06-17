@@ -125,6 +125,8 @@ export default function FeedbackPanel({
 
       {/* Concept links */}
       {(question.relatedJourneyStepId || question.relatedLearningModuleId) && (
+        <div className="space-y-1.5">
+          <p className="text-xs text-gray-400">Explore this concept further</p>
         <div className="flex flex-col md:flex-row gap-2">
           {question.relatedJourneyStepId && onNavigateToJourneyStep && (
             <button
@@ -142,6 +144,7 @@ export default function FeedbackPanel({
               Open Learning Module →
             </button>
           )}
+        </div>
         </div>
       )}
 
