@@ -154,7 +154,7 @@ export default function JourneyView({ journey, onNavigateToModule }: JourneyView
             style={{ maxWidth: "100%", maxHeight: "100%" }}
             aria-label={`Biological scale: ${SCALE_LABEL[step.scale]}, location: ${step.location}`}
           >
-            <SceneDisplay scale={step.scale} location={step.location} active={true} />
+            <SceneDisplay key={step.id} scale={step.scale} location={step.location} active={true} />
           </svg>
         </div>
 

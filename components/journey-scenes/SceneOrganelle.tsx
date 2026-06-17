@@ -29,6 +29,14 @@ export default function SceneOrganelle({
           style={{ transition: "stroke 0.4s" }}
         />
       ))}
+      {/* Glucose dot — position reflects which mitochondrial compartment */}
+      <circle
+        cx={location === "Mitochondrial Membrane" ? 84 : location === "Inner Mitochondrial Membrane" ? 38 : 50}
+        cy="46"
+        r="3.5"
+        fill="#fbbf24" stroke="#d97706" strokeWidth="0.7"
+        style={{ animation: "glucose-dot-in 0.4s ease-out forwards", transformBox: "fill-box", transformOrigin: "center" }}
+      />
       <text x="50" y="83" textAnchor="middle" fontSize="4.5" fill={t}
         style={{ transition: "fill 0.4s", fontFamily: "sans-serif" }}>
         {location}

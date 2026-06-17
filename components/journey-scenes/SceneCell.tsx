@@ -28,6 +28,14 @@ export default function SceneCell({
         style={{ transition: "fill 0.4s, stroke 0.4s" }} />
       <ellipse cx="36" cy="32" rx="4" ry="3" fill={inner} stroke={c} strokeWidth="0.6"
         style={{ transition: "fill 0.4s, stroke 0.4s" }} />
+      {/* Glucose dot — at membrane entry or inside the cytosol */}
+      <circle
+        cx={location === "Cell Membrane" ? 80 : 66}
+        cy={location === "Cell Membrane" ? 46 : 62}
+        r="3.5"
+        fill="#fbbf24" stroke="#d97706" strokeWidth="0.7"
+        style={{ animation: "glucose-dot-in 0.4s ease-out forwards", transformBox: "fill-box", transformOrigin: "center" }}
+      />
       <text x="50" y="90" textAnchor="middle" fontSize="4.5" fill={t}
         style={{ transition: "fill 0.4s", fontFamily: "sans-serif" }}>
         {location}

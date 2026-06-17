@@ -1,3 +1,11 @@
+import React from "react";
+
+const DOT_STYLE: React.CSSProperties = {
+  animation: "glucose-dot-in 0.4s ease-out forwards",
+  transformBox: "fill-box",
+  transformOrigin: "center",
+};
+
 export default function SceneOrgan({
   active,
   location,
@@ -26,6 +34,14 @@ export default function SceneOrgan({
         style={{ transition: "fill 0.4s" }} />
       <ellipse cx="50" cy="56" rx="8" ry="6" fill={inner}
         style={{ transition: "fill 0.4s" }} />
+      {/* Glucose dot — crossing intestinal wall or inside hepatocytes */}
+      <circle
+        cx={location === "Small Intestine" ? 36 : 50}
+        cy="44"
+        r="3.5"
+        fill="#fbbf24" stroke="#d97706" strokeWidth="0.7"
+        style={DOT_STYLE}
+      />
       <text x="50" y="90" textAnchor="middle" fontSize="4.5" fill={t}
         style={{ transition: "fill 0.4s", fontFamily: "sans-serif" }}>
         {location}

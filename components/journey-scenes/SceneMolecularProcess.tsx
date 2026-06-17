@@ -52,6 +52,9 @@ export default function SceneMolecularProcess({ active }: { active: boolean }) {
         ⚡
       </text>
 
+      {/* Glucose dot — the energy-derived proton arriving at ATP synthase */}
+      <circle cx="50" cy="68" r="3.5" fill="#fbbf24" stroke="#d97706" strokeWidth="0.7"
+        style={{ animation: "glucose-dot-in 0.4s ease-out forwards", transformBox: "fill-box", transformOrigin: "center" }} />
       <text x="50" y="90" textAnchor="middle" fontSize="4.5" fill={t}
         style={{ transition: "fill 0.4s", fontFamily: "sans-serif" }}>
         ATP Synthase (F₀F₁)
