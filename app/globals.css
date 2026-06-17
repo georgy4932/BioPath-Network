@@ -28,3 +28,21 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes krebs-pulse {
+    0%, 100% { fill-opacity: 0.12; }
+    50% { fill-opacity: 0.38; }
+  }
+  @keyframes dash-flow {
+    to { stroke-dashoffset: -18; }
+  }
+  .krebs-glow-animated {
+    animation: krebs-pulse 3.5s ease-in-out infinite;
+    fill-opacity: 0.12;
+  }
+  .pathway-animated {
+    stroke-dasharray: 6 3;
+    animation: dash-flow 3s linear infinite;
+  }
+}
