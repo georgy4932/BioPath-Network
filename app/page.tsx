@@ -4,12 +4,10 @@ import { useState, useCallback } from "react";
 import Sidebar from "@/components/Sidebar";
 import LearningModuleView from "@/components/LearningModuleView";
 import StepDetailPanel from "@/components/StepDetailPanel";
-import NodeDetailPanel from "@/components/NodeDetailPanel";
 import MetabolicAnimation from "@/components/MetabolicAnimation";
 import { learningModules } from "@/data/learning-modules";
 import { g6pAnimationSteps } from "@/data/animation-steps";
 import { LearningStep } from "@/types/learning";
-import { NetworkNode } from "@/types/network";
 
 type ActiveTab = "learning" | "animation";
 
@@ -17,7 +15,6 @@ export default function HomePage() {
   const [activeModuleId, setActiveModuleId] = useState(learningModules[0].id);
   const [activeTab, setActiveTab] = useState<ActiveTab>("learning");
   const [selectedStep, setSelectedStep] = useState<LearningStep | null>(null);
-  const [selectedNode, setSelectedNode] = useState<NetworkNode | null>(null);
 
   const activeModule = learningModules.find((m) => m.id === activeModuleId)!;
 
@@ -32,12 +29,9 @@ export default function HomePage() {
 
   const handleCloseStep = useCallback(() => setSelectedStep(null), []);
 
-  const handleCloseNode = useCallback(() => setSelectedNode(null), []);
-
   const handleTabChange = useCallback((tab: ActiveTab) => {
     setActiveTab(tab);
     setSelectedStep(null);
-    setSelectedNode(null);
   }, []);
 
   return (
@@ -128,7 +122,6 @@ export default function HomePage() {
 
       {/* Panels — rendered outside the scrollable area so they overlay correctly */}
       <StepDetailPanel step={selectedStep} onClose={handleCloseStep} />
-      <NodeDetailPanel node={selectedNode} onClose={handleCloseNode} />
     </div>
   );
 }
