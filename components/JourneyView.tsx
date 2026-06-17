@@ -9,6 +9,7 @@ import SceneOrgan from "./journey-scenes/SceneOrgan";
 import SceneCell from "./journey-scenes/SceneCell";
 import SceneOrganelle from "./journey-scenes/SceneOrganelle";
 import SceneMolecularProcess from "./journey-scenes/SceneMolecularProcess";
+import SpatialAnchor from "./SpatialAnchor";
 
 interface JourneyViewProps {
   journey: Journey;
@@ -152,6 +153,9 @@ export default function JourneyView({ journey, onNavigateToModule }: JourneyView
           </span>
           <span className="text-xs text-gray-500 font-medium">{step.location}</span>
         </div>
+
+        {/* Spatial anchor — persistent route map */}
+        <SpatialAnchor currentStepId={step.id} />
 
         {/* SVG scene */}
         <div className="flex-shrink-0 bg-slate-50 border-b border-gray-100 flex items-center justify-center"
