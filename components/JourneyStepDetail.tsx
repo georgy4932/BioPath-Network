@@ -1,3 +1,5 @@
+"use client";
+
 import { JourneyStep } from "@/types/journey";
 import { ControlType } from "@/types/learning";
 
