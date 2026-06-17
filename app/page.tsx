@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import LandingNav from "@/components/landing/LandingNav";
 import HeroSection from "@/components/landing/HeroSection";
-import PathwayCardGrid from "@/components/landing/PathwayCardGrid";
 import KrebsHubCallout from "@/components/landing/KrebsHubCallout";
+import JourneyCardsSection from "@/components/landing/JourneyCardsSection";
 import LandingFooter from "@/components/landing/LandingFooter";
 
 export const metadata: Metadata = {
@@ -17,8 +17,8 @@ export default function LandingPage() {
       <LandingNav />
       <main>
         <HeroSection />
-        <PathwayCardGrid />
         <KrebsHubCallout />
+        <JourneyCardsSection />
       </main>
       <LandingFooter />
     </div>
