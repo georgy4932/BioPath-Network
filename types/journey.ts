@@ -22,6 +22,13 @@ export interface JourneyStep {
   controlType?: ControlType;
   /** ID of a LearningModule in learning-modules.ts */
   relatedLearningModuleId?: string;
+  /** Link to a step in another journey */
+  crossJourneyLink?: {
+    journeyId: string;
+    stepId: string;
+    label: string;
+    educationalMessage: string;
+  };
 }
 
 export interface Journey {

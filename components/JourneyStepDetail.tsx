@@ -13,12 +13,14 @@ interface JourneyStepDetailProps {
   step: JourneyStep;
   stepNumber: number;
   onNavigateToModule?: (moduleId: string) => void;
+  onNavigateToCrossJourneyStep?: (journeyId: string, stepId: string) => void;
 }
 
 export default function JourneyStepDetail({
   step,
   stepNumber,
   onNavigateToModule,
+  onNavigateToCrossJourneyStep,
 }: JourneyStepDetailProps) {
   return (
     <div className="px-4 py-4 space-y-3 max-w-2xl">
@@ -65,6 +67,33 @@ export default function JourneyStepDetail({
             Disease relevance
           </h3>
           <p className="text-sm text-amber-900 leading-relaxed">{step.diseaseRelevance}</p>
+        </section>
+      )}
+
+      {/* Cross-journey link */}
+      {step.crossJourneyLink && onNavigateToCrossJourneyStep && (
+        <section className="bg-green-50 rounded-lg px-3 py-2.5 border border-green-100">
+          <h3 className="text-xs font-semibold text-green-700 uppercase tracking-wider mb-1">
+            Connected journey
+          </h3>
+          <p className="text-sm text-green-900 leading-relaxed mb-2">
+            {step.crossJourneyLink.educationalMessage}
+          </p>
+          <button
+            onClick={() =>
+              onNavigateToCrossJourneyStep(
+                step.crossJourneyLink!.journeyId,
+                step.crossJourneyLink!.stepId
+              )
+            }
+            className="flex items-center gap-1.5 text-xs text-green-700 hover:text-green-900 font-medium transition-colors cursor-pointer"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            {step.crossJourneyLink.label}
+          </button>
         </section>
       )}
 
