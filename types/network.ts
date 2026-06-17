@@ -6,6 +6,9 @@ export type NodeType =
   | "hormone"
   | "mechanism";
 
+// TODO: "primary" must only be used when sourceNote contains a specific
+// citation (author, year, DOI, or named study). Do not assign "primary"
+// to placeholder source notes.
 export type EvidenceLevel = "textbook" | "review" | "primary" | "hypothesis";
 
 export interface NetworkNode {

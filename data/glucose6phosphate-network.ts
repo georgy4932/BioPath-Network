@@ -328,9 +328,9 @@ export const glucoseNetwork: NetworkData = {
       source: "g6pd-deficiency",
       target: "g6pd",
       label: "reduces activity",
-      evidenceLevel: "primary",
+      evidenceLevel: "review",
       sourceNote:
-        "Established in primary enzymatic and genetic studies — source to be added.",
+        "Described in review literature on G6PD genetics and enzymology — source to be added.",
     },
     {
       id: "e-g6pddef-oxidativestress",
