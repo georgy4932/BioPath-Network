@@ -95,7 +95,7 @@ export const carbohydratePractice: QuestionSet = {
     {
       id: "pq-006",
       type: "true-false",
-      difficulty: "intermediate",
+      difficulty: "basic",
       relatedJourneyStepId: "jny-glycolysis",
       prompt: "True or false: glycolysis requires oxygen to proceed.",
       correct: false,
@@ -156,7 +156,7 @@ export const carbohydratePractice: QuestionSet = {
       options: [
         "Red blood cells carry oxygen and are therefore inherently more prone to self-oxidation than other cells",
         "Red blood cells lack mitochondria, making G6PD their only significant source of NADPH — without it, they cannot regenerate reduced glutathione",
-        "Red blood cells divide rapidly and cannot maintain steady antioxidant enzyme levels",
+        "Red blood cells have alternative mitochondrial pathways that fully replace G6PD-derived NADPH",
         "Red blood cells cannot perform glycolysis and so have no way to generate any NADPH at all",
       ],
       correctIndex: 1,
@@ -168,7 +168,7 @@ export const carbohydratePractice: QuestionSet = {
     {
       id: "pq-010",
       type: "mcq",
-      difficulty: "advanced",
+      difficulty: "intermediate",
       relatedJourneyStepId: "jny-etc",
       prompt:
         "What does the electron transport chain create that allows ATP synthase to produce ATP?",
