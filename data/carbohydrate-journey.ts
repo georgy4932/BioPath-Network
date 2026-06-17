@@ -44,7 +44,7 @@ export const carbohydrateJourney: Journey = {
       whyItMatters:
         "The intestinal epithelium controls how much glucose enters the portal circulation. Rapid absorption leads to a faster rise in blood glucose.",
       diseaseRelevance:
-        "Malabsorption disorders — including coeliac disease and small intestinal bacterial overgrowth — can impair nutrient uptake and reduce energy availability.",
+        "Malabsorption disorders can impair nutrient uptake and reduce energy availability.",
     },
     {
       id: "jny-portal",
@@ -110,8 +110,6 @@ export const carbohydrateJourney: Journey = {
         "Pyruvate crosses the mitochondrial membranes and is converted to acetyl-CoA by pyruvate dehydrogenase, releasing one molecule of CO₂ and producing one molecule of NADH per pyruvate.",
       whyItMatters:
         "Mitochondrial entry commits pyruvate to aerobic metabolism. Without this step, cells can only use anaerobic glycolysis, producing far less ATP per glucose molecule.",
-      diseaseRelevance:
-        "Pyruvate dehydrogenase deficiency impairs this conversion, causing lactic acidosis as pyruvate accumulates and is converted to lactate instead.",
       controlType: "rate-limiting",
     },
     {
