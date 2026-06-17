@@ -7,33 +7,33 @@ export default function SceneMolecularProcess({ active }: { active: boolean }) {
     <g>
       {/* ATP molecule — adenosine + three phosphate groups */}
       {/* Adenosine (sugar + base) */}
-      <ellipse cx="50" cy="52" rx="13" ry="10" fill={pFill} stroke={c} strokeWidth="1.2"
+      <ellipse cx="68" cy="52" rx="13" ry="10" fill={pFill} stroke={c} strokeWidth="1.2"
         style={{ transition: "fill 0.4s, stroke 0.4s" }} />
-      <text x="50" y="55" textAnchor="middle" fontSize="4" fill={t}
+      <text x="68" y="55" textAnchor="middle" fontSize="4" fill={t}
         style={{ fontFamily: "sans-serif" }}>
         Adenosine
       </text>
       {/* Phosphate backbone */}
-      <line x1="37" y1="52" x2="24" y2="52" stroke={c} strokeWidth="1"
+      <line x1="55" y1="52" x2="42" y2="52" stroke={c} strokeWidth="1"
         style={{ transition: "stroke 0.4s" }} />
-      <circle cx="20" cy="52" r="5" fill={pFill} stroke={c} strokeWidth="1"
+      <circle cx="38" cy="52" r="5" fill={pFill} stroke={c} strokeWidth="1"
         style={{ transition: "fill 0.4s, stroke 0.4s" }} />
-      <text x="20" y="54.5" textAnchor="middle" fontSize="3.5" fill={t}
+      <text x="38" y="54.5" textAnchor="middle" fontSize="3.5" fill={t}
         style={{ fontFamily: "sans-serif" }}>P</text>
 
-      <line x1="15" y1="52" x2="9" y2="52" stroke={c} strokeWidth="1"
+      <line x1="33" y1="52" x2="27" y2="52" stroke={c} strokeWidth="1"
         style={{ transition: "stroke 0.4s" }} />
-      <circle cx="6" cy="52" r="5" fill={pFill} stroke={c} strokeWidth="1"
+      <circle cx="24" cy="52" r="5" fill={pFill} stroke={c} strokeWidth="1"
         style={{ transition: "fill 0.4s, stroke 0.4s" }} />
-      <text x="6" y="54.5" textAnchor="middle" fontSize="3.5" fill={t}
+      <text x="24" y="54.5" textAnchor="middle" fontSize="3.5" fill={t}
         style={{ fontFamily: "sans-serif" }}>P</text>
 
-      <line x1="1" y1="52" x2="-5" y2="52" stroke={c} strokeWidth="1"
+      <line x1="19" y1="52" x2="13" y2="52" stroke={c} strokeWidth="1"
         style={{ transition: "stroke 0.4s" }} />
       {/* Terminal phosphate — highlighted as energy-rich bond */}
-      <circle cx="-8" cy="52" r="6" fill={eFill} stroke={active ? "#d97706" : "#9ca3af"}
+      <circle cx="10" cy="52" r="6" fill={eFill} stroke={active ? "#d97706" : "#9ca3af"}
         strokeWidth="1.2" style={{ transition: "fill 0.4s, stroke 0.4s" }} />
-      <text x="-8" y="54.5" textAnchor="middle" fontSize="3.5"
+      <text x="10" y="54.5" textAnchor="middle" fontSize="3.5"
         fill={active ? "#92400e" : "#6b7280"} style={{ fontFamily: "sans-serif" }}>P</text>
 
       {/* Energy label */}
