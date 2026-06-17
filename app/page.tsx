@@ -4,20 +4,17 @@ import { useState, useCallback } from "react";
 import Sidebar from "@/components/Sidebar";
 import LearningModuleView from "@/components/LearningModuleView";
 import StepDetailPanel from "@/components/StepDetailPanel";
-import NodeDetailPanel from "@/components/NodeDetailPanel";
-import MetabolicAnimation from "@/components/MetabolicAnimation";
+import JourneyView from "@/components/JourneyView";
 import { learningModules } from "@/data/learning-modules";
-import { g6pAnimationSteps } from "@/data/animation-steps";
+import { carbohydrateJourney } from "@/data/carbohydrate-journey";
 import { LearningStep } from "@/types/learning";
-import { NetworkNode } from "@/types/network";
 
-type ActiveTab = "learning" | "animation";
+type ActiveTab = "learning" | "journey";
 
 export default function HomePage() {
   const [activeModuleId, setActiveModuleId] = useState(learningModules[0].id);
   const [activeTab, setActiveTab] = useState<ActiveTab>("learning");
   const [selectedStep, setSelectedStep] = useState<LearningStep | null>(null);
-  const [selectedNode, setSelectedNode] = useState<NetworkNode | null>(null);
 
   const activeModule = learningModules.find((m) => m.id === activeModuleId)!;
 
@@ -32,12 +29,15 @@ export default function HomePage() {
 
   const handleCloseStep = useCallback(() => setSelectedStep(null), []);
 
-  const handleCloseNode = useCallback(() => setSelectedNode(null), []);
-
   const handleTabChange = useCallback((tab: ActiveTab) => {
     setActiveTab(tab);
     setSelectedStep(null);
-    setSelectedNode(null);
+  }, []);
+
+  const handleNavigateToModule = useCallback((moduleId: string) => {
+    setActiveTab("learning");
+    setActiveModuleId(moduleId);
+    setSelectedStep(null);
   }, []);
 
   return (
@@ -74,7 +74,7 @@ export default function HomePage() {
         <div className="flex-1 flex flex-col overflow-hidden min-w-0">
           {/* Tab bar */}
           <div className="flex-shrink-0 flex items-center gap-1 px-4 pt-3 pb-0 bg-white border-b border-gray-200">
-            {(["learning", "animation"] as ActiveTab[]).map((tab) => (
+            {(["learning", "journey"] as ActiveTab[]).map((tab) => (
               <button
                 key={tab}
                 onClick={() => handleTabChange(tab)}
@@ -84,7 +84,7 @@ export default function HomePage() {
                     : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
                 }`}
               >
-                {tab === "learning" ? "Learning View" : "Animation View"}
+                {tab === "learning" ? "Learning View" : "Journey View"}
               </button>
             ))}
           </div>
@@ -119,16 +119,18 @@ export default function HomePage() {
               </div>
             </div>
           ) : (
-            <div className="flex-1 flex flex-col overflow-hidden" style={{ minHeight: 0 }}>
-              <MetabolicAnimation steps={g6pAnimationSteps} />
+            <div className="flex-1 overflow-hidden" style={{ minHeight: 0 }}>
+              <JourneyView
+                journey={carbohydrateJourney}
+                onNavigateToModule={handleNavigateToModule}
+              />
             </div>
           )}
         </div>
       </div>
 
-      {/* Panels — rendered outside the scrollable area so they overlay correctly */}
+      {/* Panels */}
       <StepDetailPanel step={selectedStep} onClose={handleCloseStep} />
-      <NodeDetailPanel node={selectedNode} onClose={handleCloseNode} />
     </div>
   );
 }
