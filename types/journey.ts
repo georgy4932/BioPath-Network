@@ -17,6 +17,7 @@ export interface JourneyStep {
   explanation: string;
   whyItMatters: string;
   icon?: string;
+  /** Disease relevance in Journey View must remain high-level and must pass scientific review before adding specific named disorders. */
   diseaseRelevance?: string;
   controlType?: ControlType;
   /** ID of a LearningModule in learning-modules.ts */
