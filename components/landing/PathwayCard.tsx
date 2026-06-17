@@ -18,7 +18,7 @@ export default function PathwayCard({ card }: { card: PathwayCardData }) {
       className={`group relative flex flex-col gap-3 rounded-xl border p-5 h-full transition-all ${
         isLive
           ? "bg-white/5 border-white/10 hover:border-cyan-500/40 hover:bg-white/8 cursor-pointer"
-          : "bg-white/2 border-white/5 opacity-50 cursor-default select-none"
+          : "bg-white/3 border-white/8 opacity-60 cursor-default select-none"
       }`}
     >
       {/* Status badge */}
@@ -38,7 +38,7 @@ export default function PathwayCard({ card }: { card: PathwayCardData }) {
         <h3 className={`text-sm font-semibold leading-snug ${isLive ? "text-white" : "text-slate-400"}`}>
           {card.title}
         </h3>
-        <p className="text-xs text-slate-500 leading-relaxed line-clamp-3">
+        <p className="text-xs text-slate-400 leading-relaxed line-clamp-3">
           {card.description}
         </p>
       </div>
