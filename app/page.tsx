@@ -16,6 +16,7 @@ export default function HomePage() {
   const [activeModuleId, setActiveModuleId] = useState(learningModules[0].id);
   const [activeTab, setActiveTab] = useState<ActiveTab>("learning");
   const [selectedStep, setSelectedStep] = useState<LearningStep | null>(null);
+  const [requestedJourneyStepId, setRequestedJourneyStepId] = useState<string | null>(null);
 
   const activeModule = learningModules.find((m) => m.id === activeModuleId)!;
 
@@ -38,6 +39,12 @@ export default function HomePage() {
   const handleNavigateToModule = useCallback((moduleId: string) => {
     setActiveTab("learning");
     setActiveModuleId(moduleId);
+    setSelectedStep(null);
+  }, []);
+
+  const handleNavigateToJourneyStep = useCallback((stepId: string) => {
+    setActiveTab("journey");
+    setRequestedJourneyStepId(stepId);
     setSelectedStep(null);
   }, []);
 
@@ -124,11 +131,16 @@ export default function HomePage() {
               <JourneyView
                 journey={carbohydrateJourney}
                 onNavigateToModule={handleNavigateToModule}
+                requestedStepId={requestedJourneyStepId}
+                onStepRequested={() => setRequestedJourneyStepId(null)}
               />
             </div>
           ) : (
             <div className="flex-1 overflow-hidden" style={{ minHeight: 0 }}>
-              <PracticeView />
+              <PracticeView
+                onNavigateToJourneyStep={handleNavigateToJourneyStep}
+                onNavigateToModule={handleNavigateToModule}
+              />
             </div>
           )}
         </div>
