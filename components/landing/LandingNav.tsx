@@ -8,7 +8,7 @@ export default function LandingNav() {
       </span>
 
       <div className="hidden md:flex items-center gap-8">
-        <a href="#pathways" className="text-sm text-slate-400 hover:text-white transition-colors cursor-pointer">
+        <a href="#journeys" className="text-sm text-slate-400 hover:text-white transition-colors cursor-pointer">
           Pathways
         </a>
         <a href="#about" className="text-sm text-slate-400 hover:text-white transition-colors cursor-pointer">
