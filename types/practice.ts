@@ -1,3 +1,5 @@
+export type AnswerValue = number | boolean | number[] | string;
+
 export type QuestionType =
   | "mcq"
   | "true-false"

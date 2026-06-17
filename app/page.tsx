@@ -5,11 +5,12 @@ import Sidebar from "@/components/Sidebar";
 import LearningModuleView from "@/components/LearningModuleView";
 import StepDetailPanel from "@/components/StepDetailPanel";
 import JourneyView from "@/components/JourneyView";
+import PracticeView from "@/components/PracticeView";
 import { learningModules } from "@/data/learning-modules";
 import { carbohydrateJourney } from "@/data/carbohydrate-journey";
 import { LearningStep } from "@/types/learning";
 
-type ActiveTab = "learning" | "journey";
+type ActiveTab = "learning" | "journey" | "practice";
 
 export default function HomePage() {
   const [activeModuleId, setActiveModuleId] = useState(learningModules[0].id);
@@ -74,7 +75,7 @@ export default function HomePage() {
         <div className="flex-1 flex flex-col overflow-hidden min-w-0">
           {/* Tab bar */}
           <div className="flex-shrink-0 flex items-center gap-1 px-4 pt-3 pb-0 bg-white border-b border-gray-200">
-            {(["learning", "journey"] as ActiveTab[]).map((tab) => (
+            {(["learning", "journey", "practice"] as ActiveTab[]).map((tab) => (
               <button
                 key={tab}
                 onClick={() => handleTabChange(tab)}
@@ -84,7 +85,7 @@ export default function HomePage() {
                     : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
                 }`}
               >
-                {tab === "learning" ? "Learning View" : "Journey View"}
+                {tab === "learning" ? "Learning View" : tab === "journey" ? "Journey View" : "Practice"}
               </button>
             ))}
           </div>
@@ -118,12 +119,16 @@ export default function HomePage() {
                 />
               </div>
             </div>
-          ) : (
+          ) : activeTab === "journey" ? (
             <div className="flex-1 overflow-hidden" style={{ minHeight: 0 }}>
               <JourneyView
                 journey={carbohydrateJourney}
                 onNavigateToModule={handleNavigateToModule}
               />
+            </div>
+          ) : (
+            <div className="flex-1 overflow-hidden" style={{ minHeight: 0 }}>
+              <PracticeView />
             </div>
           )}
         </div>
