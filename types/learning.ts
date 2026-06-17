@@ -14,10 +14,13 @@ export interface StepDetail {
   sourceNote: string;
 }
 
+export type ControlType = "rate-limiting" | "rate-committing" | "regulatory";
+
 export interface LearningStep {
   id: string;
   label: string;
-  isControlStep?: boolean;
+  summary: string;
+  controlType?: ControlType;
   detail: StepDetail;
 }
 

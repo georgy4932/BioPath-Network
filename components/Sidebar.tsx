@@ -21,7 +21,7 @@ export default function Sidebar({ modules, activeModuleId, onSelectModule }: Sid
   }));
 
   return (
-    <nav className="w-56 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col overflow-y-auto">
+    <nav className="hidden md:flex w-56 flex-shrink-0 bg-white border-r border-gray-200 flex-col overflow-y-auto">
       <div className="px-4 pt-4 pb-3 border-b border-gray-100">
         <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest">
           Metabolism Catalogue

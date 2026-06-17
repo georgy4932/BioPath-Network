@@ -1,5 +1,22 @@
 import { LearningModule } from "@/types/learning";
 
+// CONTENT SYNC NOTES
+// This file depends on node and edge IDs defined in glucose6phosphate-network.ts.
+// If those IDs change, update the references listed below.
+//
+// Module: glucose-to-g6p
+//   Nodes: glucose, glucose-6-phosphate, fructose-6-phosphate, glycogen
+//   Edges: e-glucose-g6p, e-g6p-glycogen
+//
+// Module: g6pd-nadph-glutathione
+//   Nodes: glucose-6-phosphate, g6pd, g6pd-deficiency, nadph, glutathione, oxidative-stress, hemolytic-anemia
+//   Edges: e-g6p-nadph, e-nadph-glutathione, e-glutathione-oxidativestress,
+//          e-g6pddef-g6pd, e-g6pddef-oxidativestress, e-oxidativestress-hemolytic
+//
+// Module: insulin-glucagon-regulation
+//   Nodes: glucose, glucose-6-phosphate, glycogen, insulin, glucagon, diabetes-mellitus
+//   Edges: e-insulin-glucose, e-insulin-glycogen, e-glucagon-glycogen, e-glucagon-glucose
+
 export const learningModules: LearningModule[] = [
   // ─── Glucose Metabolism ────────────────────────────────────────────────────
   {
@@ -12,6 +29,8 @@ export const learningModules: LearningModule[] = [
       {
         id: "glucose-entry",
         label: "Glucose enters the cell",
+        summary:
+          "Glucose moves from blood into cells through transporter proteins; the specific transporter depends on cell type.",
         detail: {
           whatHappens:
             "Glucose moves from the bloodstream into cells via glucose transporter proteins (GLUTs). The specific transporter depends on cell type: GLUT4 in muscle and fat (regulated by insulin), GLUT2 in liver (high capacity, low affinity).",
@@ -28,7 +47,9 @@ export const learningModules: LearningModule[] = [
       {
         id: "hexokinase-phosphorylation",
         label: "Hexokinase phosphorylates glucose",
-        isControlStep: true,
+        summary:
+          "Hexokinase adds a phosphate group to glucose, trapping it inside the cell as glucose-6-phosphate.",
+        controlType: "rate-committing",
         detail: {
           whatHappens:
             "Hexokinase (or glucokinase in liver) transfers a phosphate group from ATP to glucose, producing glucose-6-phosphate (G6P). This reaction is essentially irreversible and traps glucose inside the cell — it can no longer exit via glucose transporters.",
@@ -36,7 +57,7 @@ export const learningModules: LearningModule[] = [
           whyItMatters:
             "Phosphorylation commits glucose to intracellular metabolism. Hexokinase is inhibited by its product G6P (product inhibition); glucokinase is not, allowing the liver to act as a glucose buffer after meals.",
           diseaseRelevance:
-            "Glucokinase mutations are associated with maturity-onset diabetes of the young (MODY type 2), a form of monogenic diabetes characterised by mild chronic hyperglycaemia.",
+            "Glucokinase variants are associated with a rare form of monogenic diabetes characterised by mild chronic hyperglycaemia.",
           evidenceLevel: "textbook",
           sourceNote:
             "Standard biochemistry textbook — source to be added.",
@@ -45,6 +66,8 @@ export const learningModules: LearningModule[] = [
       {
         id: "g6p-junction",
         label: "Glucose-6-phosphate reaches a metabolic junction",
+        summary:
+          "Glucose-6-phosphate sits at a branch point where it can be routed to energy production, storage, or antioxidant defence.",
         detail: {
           whatHappens:
             "Glucose-6-phosphate (G6P) sits at a branch point. It can enter glycolysis (energy production via fructose-6-phosphate), glycogenesis (storage as glycogen), or the pentose phosphate pathway (NADPH and ribose-5-phosphate production). Which route predominates depends on the cell's energy state and hormonal context.",
@@ -72,7 +95,9 @@ export const learningModules: LearningModule[] = [
       {
         id: "g6pd-reaction",
         label: "G6PD generates NADPH from glucose-6-phosphate",
-        isControlStep: true,
+        summary:
+          "G6PD is the sole enzyme that produces NADPH in red blood cells, making it essential for antioxidant defence.",
+        controlType: "rate-limiting",
         detail: {
           whatHappens:
             "Glucose-6-phosphate dehydrogenase (G6PD) oxidises glucose-6-phosphate to 6-phosphogluconolactone, simultaneously reducing NADP⁺ to NADPH. This is the rate-limiting step of the oxidative branch of the pentose phosphate pathway (PPP).",
@@ -89,6 +114,8 @@ export const learningModules: LearningModule[] = [
       {
         id: "nadph-regenerates-gsh",
         label: "NADPH regenerates reduced glutathione (GSH)",
+        summary:
+          "Glutathione reductase uses NADPH to keep glutathione in its active, reduced form ready to neutralise oxidants.",
         detail: {
           whatHappens:
             "Glutathione reductase uses NADPH to convert oxidised glutathione (GSSG) back to its active reduced form (GSH). Without a continuous supply of NADPH, the cell's glutathione pool shifts toward the oxidised, inactive GSSG form.",
@@ -105,6 +132,8 @@ export const learningModules: LearningModule[] = [
       {
         id: "gsh-neutralises-ros",
         label: "Reduced glutathione neutralises reactive oxygen species (ROS)",
+        summary:
+          "Glutathione peroxidase uses GSH to detoxify hydrogen peroxide; GSH is consumed and must be continuously regenerated.",
         detail: {
           whatHappens:
             "Glutathione peroxidase uses reduced glutathione (GSH) to detoxify hydrogen peroxide (H₂O₂) and lipid peroxides, converting them to water and oxidised glutathione (GSSG). GSH is consumed in this reaction and must be continuously regenerated.",
@@ -113,7 +142,7 @@ export const learningModules: LearningModule[] = [
           whyItMatters:
             "This is the front-line defence against oxidative damage in red blood cells. In cells with adequate G6PD activity, GSSG is continuously recycled back to GSH via NADPH. When G6PD is deficient, the cycle cannot keep up with oxidative challenge.",
           diseaseRelevance:
-            "When GSH is depleted, haemoglobin becomes vulnerable to oxidation, forming Heinz bodies. Damaged red blood cells are removed by the spleen, causing haemolytic anaemia.",
+            "When GSH is depleted, haemoglobin becomes vulnerable to oxidation and damaged red blood cells are removed by the spleen, causing haemolytic anaemia.",
           evidenceLevel: "textbook",
           sourceNote:
             "Standard biochemistry textbook — source to be added.",
@@ -122,9 +151,11 @@ export const learningModules: LearningModule[] = [
       {
         id: "oxidative-stress-haemolysis",
         label: "Oxidative stress can precipitate haemolytic anaemia risk",
+        summary:
+          "In G6PD-deficient individuals, specific oxidative triggers can overwhelm depleted glutathione, leading to premature red blood cell destruction.",
         detail: {
           whatHappens:
-            "When an oxidative challenge — from certain medications (e.g. primaquine), infections, or fava beans — overwhelms the depleted glutathione pool, haemoglobin is oxidised and red blood cells are destroyed prematurely (haemolysis).",
+            "When an oxidative challenge — from certain medications, infections, or dietary sources — overwhelms the depleted glutathione pool, haemoglobin is oxidised and red blood cells are destroyed prematurely (haemolysis).",
           keyMolecule: "Reactive oxygen species (ROS)",
           whyItMatters:
             "Haemolytic episodes in G6PD deficiency are episodic, not continuous. They are precipitated by specific oxidative triggers in susceptible individuals. This step illustrates why the G6PD → NADPH → GSH chain has direct clinical significance.",
@@ -149,6 +180,8 @@ export const learningModules: LearningModule[] = [
       {
         id: "insulin-release",
         label: "High blood glucose triggers insulin release",
+        summary:
+          "After a meal, rising blood glucose prompts pancreatic beta cells to secrete insulin into the bloodstream.",
         detail: {
           whatHappens:
             "When blood glucose rises after a meal, pancreatic beta cells detect it and secrete insulin into the bloodstream. Insulin travels to target tissues — primarily liver, muscle, and fat — to coordinate glucose disposal.",
@@ -165,6 +198,8 @@ export const learningModules: LearningModule[] = [
       {
         id: "insulin-glucose-uptake",
         label: "Insulin promotes glucose uptake and glucose-6-phosphate production",
+        summary:
+          "Insulin moves glucose transporters to the cell surface in muscle and fat, increasing glucose entry and its conversion to glucose-6-phosphate.",
         detail: {
           whatHappens:
             "Insulin promotes translocation of GLUT4 transporters to the cell surface in muscle and fat, increasing glucose uptake. Inside the cell, increased glucose flux leads to greater glucose-6-phosphate production by hexokinase, driving glycolysis and glycogenesis.",
@@ -182,9 +217,11 @@ export const learningModules: LearningModule[] = [
       {
         id: "insulin-glycogen",
         label: "Insulin promotes glycogen storage",
+        summary:
+          "Insulin signalling activates the enzymes that build glycogen from glucose-6-phosphate and suppresses glycogen breakdown.",
         detail: {
           whatHappens:
-            "Insulin activates glycogen synthase (via the PI3K–Akt signalling pathway) and inhibits glycogen phosphorylase. The net effect is to promote glycogen synthesis from glucose-6-phosphate and suppress glycogen breakdown.",
+            "Insulin activates glycogen synthase via intracellular signalling and inhibits glycogen breakdown. The net effect is to promote glycogen synthesis from glucose-6-phosphate.",
           keyMolecule: "Glycogen synthase (activated by insulin signalling)",
           whyItMatters:
             "Glycogenesis is a major route for glucose disposal after a meal. It provides a rapidly mobilisable glucose store that can be accessed during fasting or exercise.",
@@ -198,6 +235,8 @@ export const learningModules: LearningModule[] = [
       {
         id: "glucagon-release",
         label: "Low blood glucose triggers glucagon release",
+        summary:
+          "During fasting or exercise, falling blood glucose prompts pancreatic alpha cells to secrete glucagon.",
         detail: {
           whatHappens:
             "When blood glucose falls during fasting or exercise, pancreatic alpha cells release glucagon into the bloodstream. Glucagon acts primarily on the liver to restore blood glucose toward the normal range.",
@@ -214,14 +253,16 @@ export const learningModules: LearningModule[] = [
       {
         id: "glucagon-glycogenolysis",
         label: "Glucagon drives glycogen breakdown and glucose release",
-        isControlStep: true,
+        summary:
+          "Glucagon activates a signalling cascade in the liver that breaks down stored glycogen and releases glucose into the blood.",
+        controlType: "regulatory",
         detail: {
           whatHappens:
-            "Glucagon activates adenylyl cyclase, raising cyclic AMP (cAMP), which activates protein kinase A. PKA phosphorylates and activates glycogen phosphorylase, breaking glycogen down to glucose-1-phosphate. This is converted to glucose-6-phosphate and then to free glucose, which is released into the blood.",
+            "Glucagon activates intracellular signalling in the liver that promotes glycogen breakdown. The resulting glucose units are released into the bloodstream, restoring blood glucose levels.",
           keyMolecule:
-            "Glycogen phosphorylase (activated by glucagon signalling via cAMP–PKA)",
+            "Glucagon receptor (hepatic); intracellular signalling cascade",
           whyItMatters:
-            "This step shows how glucagon connects hormonal signalling to glycogen breakdown, ultimately releasing glucose and connecting back to glucose-6-phosphate. It is a control step because it initiates glucose mobilisation from the liver's glycogen store.",
+            "This step shows how glucagon connects hormonal signalling to glycogen breakdown, ultimately releasing glucose and connecting back to glucose-6-phosphate. It is a regulatory step because it initiates glucose mobilisation from the liver's glycogen store.",
           diseaseRelevance:
             "Excessive hepatic glucose production due to dysregulated glucagon action is associated with fasting hyperglycaemia in type 2 diabetes.",
           evidenceLevel: "textbook",

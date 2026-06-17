@@ -113,12 +113,32 @@ export default function HomePage() {
 
           {/* Tab content */}
           {activeTab === "learning" ? (
-            <div className="flex-1 overflow-y-auto">
-              <LearningModuleView
-                module={activeModule}
-                selectedStepId={selectedStep?.id ?? null}
-                onSelectStep={handleSelectStep}
-              />
+            <div className="flex-1 flex flex-col overflow-hidden min-w-0">
+              {/* Mobile module selector — hidden on md+ where sidebar is visible */}
+              <div className="md:hidden flex-shrink-0 bg-white border-b border-gray-200 px-4 py-2">
+                <label htmlFor="mobile-module-select" className="sr-only">
+                  Select module
+                </label>
+                <select
+                  id="mobile-module-select"
+                  value={activeModuleId}
+                  onChange={(e) => handleSelectModule(e.target.value)}
+                  className="w-full text-sm text-gray-800 bg-white border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {learningModules.map((m) => (
+                    <option key={m.id} value={m.id}>
+                      {m.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex-1 overflow-y-auto">
+                <LearningModuleView
+                  module={activeModule}
+                  selectedStepId={selectedStep?.id ?? null}
+                  onSelectStep={handleSelectStep}
+                />
+              </div>
             </div>
           ) : (
             <div className="flex-1 flex flex-col overflow-hidden" style={{ minHeight: 0 }}>

@@ -1,12 +1,18 @@
 "use client";
 
-import { LearningStep } from "@/types/learning";
+import { LearningStep, ControlType } from "@/types/learning";
 import { EvidenceLevel } from "@/types/network";
 
 interface StepDetailPanelProps {
   step: LearningStep | null;
   onClose: () => void;
 }
+
+const controlTypeBadge: Record<ControlType, { label: string; className: string }> = {
+  "rate-limiting": { label: "Rate-limiting step", className: "bg-amber-100 text-amber-700" },
+  "rate-committing": { label: "Rate-committing step", className: "bg-orange-100 text-orange-700" },
+  regulatory: { label: "Regulatory step", className: "bg-violet-100 text-violet-700" },
+};
 
 const evidenceLevelColors: Record<EvidenceLevel, string> = {
   textbook: "bg-emerald-100 text-emerald-800",
@@ -58,10 +64,12 @@ export default function StepDetailPanel({ step, onClose }: StepDetailPanelProps)
         </div>
 
         <div className="p-4 space-y-5 flex-1">
-          {step.isControlStep && (
+          {step.controlType && (
             <div>
-              <span className="inline-block text-xs font-medium px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 uppercase tracking-wide">
-                Control step
+              <span
+                className={`inline-block text-xs font-medium px-2.5 py-1 rounded-full uppercase tracking-wide ${controlTypeBadge[step.controlType].className}`}
+              >
+                {controlTypeBadge[step.controlType].label}
               </span>
             </div>
           )}

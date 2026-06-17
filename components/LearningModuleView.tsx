@@ -1,12 +1,27 @@
 "use client";
 
-import { LearningModule, LearningStep } from "@/types/learning";
+import { LearningModule, LearningStep, ControlType } from "@/types/learning";
 
 interface LearningModuleViewProps {
   module: LearningModule;
   selectedStepId: string | null;
   onSelectStep: (step: LearningStep) => void;
 }
+
+const CONTROL_TYPE_BADGE: Record<ControlType, { label: string; className: string }> = {
+  "rate-limiting": {
+    label: "Rate-limiting",
+    className: "bg-amber-100 text-amber-700",
+  },
+  "rate-committing": {
+    label: "Rate-committing",
+    className: "bg-orange-100 text-orange-700",
+  },
+  regulatory: {
+    label: "Regulatory",
+    className: "bg-violet-100 text-violet-700",
+  },
+};
 
 export default function LearningModuleView({
   module,
@@ -27,6 +42,7 @@ export default function LearningModuleView({
         {module.steps.map((step, index) => {
           const isSelected = step.id === selectedStepId;
           const isLast = index === module.steps.length - 1;
+          const badge = step.controlType ? CONTROL_TYPE_BADGE[step.controlType] : null;
 
           return (
             <div key={step.id} className="relative flex gap-4">
@@ -44,7 +60,7 @@ export default function LearningModuleView({
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold border-2 ${
                     isSelected
                       ? "bg-blue-600 border-blue-600 text-white"
-                      : step.isControlStep
+                      : step.controlType
                       ? "bg-amber-50 border-amber-400 text-amber-700"
                       : "bg-white border-gray-300 text-gray-500"
                   }`}
@@ -71,9 +87,11 @@ export default function LearningModuleView({
                     {step.label}
                   </span>
                   <div className="flex items-center gap-1.5 flex-shrink-0">
-                    {step.isControlStep && (
-                      <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 whitespace-nowrap">
-                        Control step
+                    {badge && (
+                      <span
+                        className={`text-xs font-medium px-2 py-0.5 rounded-full whitespace-nowrap ${badge.className}`}
+                      >
+                        {badge.label}
                       </span>
                     )}
                     <svg
@@ -93,8 +111,8 @@ export default function LearningModuleView({
                     </svg>
                   </div>
                 </div>
-                <p className="mt-1 text-xs text-gray-500 leading-snug line-clamp-2">
-                  {step.detail.keyMolecule}
+                <p className="mt-1 text-xs text-gray-600 leading-snug">
+                  {step.summary}
                 </p>
               </button>
             </div>
