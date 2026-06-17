@@ -135,9 +135,10 @@ export default function QuestionCard({
         {/* Ordering */}
         {question.type === "ordering" && (
           <div className="space-y-1.5">
-            <p className="text-xs text-gray-500 mb-1">
-              Tap items in the correct order. Tap again to unrank.
-            </p>
+            <div className="flex items-center justify-between mb-1">
+              <p className="text-xs text-gray-500">Tap a ranked item to remove it.</p>
+              <p className="text-xs text-gray-500">Ranked {orderedIndices.length} of {question.items.length}</p>
+            </div>
             {question.items.map((item, i) => {
               const rank = orderedIndices.indexOf(i);
               const placed = rank !== -1;
@@ -206,7 +207,9 @@ export default function QuestionCard({
             disabled={!canSubmit()}
             className="w-full py-2.5 px-4 text-sm font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
           >
-            Check answer
+            {(question.type === "short-answer" || question.type === "mechanism")
+              ? "See sample answer"
+              : "Check answer"}
           </button>
         </div>
       )}
