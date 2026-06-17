@@ -1,35 +1,17 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import dynamic from "next/dynamic";
 import Sidebar from "@/components/Sidebar";
 import LearningModuleView from "@/components/LearningModuleView";
 import StepDetailPanel from "@/components/StepDetailPanel";
 import NodeDetailPanel from "@/components/NodeDetailPanel";
+import MetabolicAnimation from "@/components/MetabolicAnimation";
 import { learningModules } from "@/data/learning-modules";
-import { glucoseNetwork } from "@/data/glucose6phosphate-network";
+import { g6pAnimationSteps } from "@/data/animation-steps";
 import { LearningStep } from "@/types/learning";
 import { NetworkNode } from "@/types/network";
 
-const BiochemGraph = dynamic(() => import("@/components/BiochemGraph"), {
-  ssr: false,
-  loading: () => (
-    <div className="flex items-center justify-center h-full text-gray-400 text-sm">
-      Loading graph…
-    </div>
-  ),
-});
-
-const NODE_TYPE_LEGEND: { type: string; label: string; color: string }[] = [
-  { type: "metabolite", label: "Metabolite", color: "bg-blue-200" },
-  { type: "enzyme", label: "Enzyme", color: "bg-green-200" },
-  { type: "disease", label: "Disease", color: "bg-red-200" },
-  { type: "hormone", label: "Hormone", color: "bg-yellow-200" },
-  { type: "mechanism", label: "Mechanism", color: "bg-orange-200" },
-  { type: "pathway", label: "Pathway", color: "bg-purple-200" },
-];
-
-type ActiveTab = "learning" | "network";
+type ActiveTab = "learning" | "animation";
 
 export default function HomePage() {
   const [activeModuleId, setActiveModuleId] = useState(learningModules[0].id);
@@ -49,10 +31,6 @@ export default function HomePage() {
   }, []);
 
   const handleCloseStep = useCallback(() => setSelectedStep(null), []);
-
-  const handleNodeSelect = useCallback((node: NetworkNode) => {
-    setSelectedNode(node);
-  }, []);
 
   const handleCloseNode = useCallback(() => setSelectedNode(null), []);
 
@@ -96,7 +74,7 @@ export default function HomePage() {
         <div className="flex-1 flex flex-col overflow-hidden min-w-0">
           {/* Tab bar */}
           <div className="flex-shrink-0 flex items-center gap-1 px-4 pt-3 pb-0 bg-white border-b border-gray-200">
-            {(["learning", "network"] as ActiveTab[]).map((tab) => (
+            {(["learning", "animation"] as ActiveTab[]).map((tab) => (
               <button
                 key={tab}
                 onClick={() => handleTabChange(tab)}
@@ -106,7 +84,7 @@ export default function HomePage() {
                     : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
                 }`}
               >
-                {tab === "learning" ? "Learning View" : "Network View"}
+                {tab === "learning" ? "Learning View" : "Animation View"}
               </button>
             ))}
           </div>
@@ -142,52 +120,7 @@ export default function HomePage() {
             </div>
           ) : (
             <div className="flex-1 flex flex-col overflow-hidden" style={{ minHeight: 0 }}>
-              {/* Network legend toolbar */}
-              <div className="flex-shrink-0 bg-white border-b border-gray-200 px-4 py-2">
-                <div className="flex items-center justify-between flex-wrap gap-2">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">
-                      Legend
-                    </span>
-                    {NODE_TYPE_LEGEND.map((item) => (
-                      <span
-                        key={item.type}
-                        className="flex items-center gap-1.5 text-xs text-gray-600"
-                      >
-                        <span
-                          className={`w-3 h-3 rounded-sm ${item.color} border border-gray-300`}
-                        />
-                        {item.label}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="text-xs text-gray-400">
-                    Tap or click a node · Scroll or pinch to zoom · Drag to pan
-                  </p>
-                </div>
-              </div>
-
-              {/* Graph */}
-              <div className="flex-1 relative overflow-hidden" style={{ minHeight: 0 }}>
-                <BiochemGraph
-                  data={glucoseNetwork}
-                  onNodeSelect={handleNodeSelect}
-                />
-                <div className="absolute top-3 left-3 bg-white border border-gray-200 rounded-md px-3 py-1.5 shadow-sm pointer-events-none">
-                  <p className="text-xs text-gray-500">
-                    Hub:{" "}
-                    <span className="font-medium text-gray-800">
-                      {glucoseNetwork.nodes.find((n) => n.id === "glucose-6-phosphate")?.label}
-                    </span>
-                  </p>
-                </div>
-                <div className="absolute bottom-10 left-3 bg-white border border-gray-200 rounded-md px-3 py-1.5 shadow-sm pointer-events-none">
-                  <p className="text-xs text-gray-400">
-                    {glucoseNetwork.nodes.length} nodes &middot;{" "}
-                    {glucoseNetwork.edges.length} edges
-                  </p>
-                </div>
-              </div>
+              <MetabolicAnimation steps={g6pAnimationSteps} />
             </div>
           )}
         </div>
