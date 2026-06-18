@@ -37,7 +37,7 @@ export default function KrebsHubCallout() {
               <circle cx="10"  cy="80"  r="4"   fill="#0f172a" stroke="#475569" strokeWidth="1.5" strokeOpacity="0.7" />
 
               {/* Hub glow — animated */}
-              <circle cx="70" cy="70" r="28" fill="#7c3aed" fillOpacity="0.15" className="krebs-glow-animated" />
+              <circle cx="70" cy="70" r="28" fill="#7c3aed" fillOpacity="0.15" stroke="#a78bfa" strokeWidth="1" strokeOpacity="0.4" className="krebs-glow-animated" />
               <circle cx="70" cy="70" r="18" fill="#1e1040" stroke="#a78bfa" strokeWidth="2" />
 
               {/* Hub label */}
