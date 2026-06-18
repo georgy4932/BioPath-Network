@@ -1,6 +1,6 @@
 export default function LandingFooter() {
   return (
-    <footer className="border-t border-white/8 px-6 py-8" style={{ background: "#0a1628" }}>
+    <footer className="border-t border-white/10 px-6 py-8">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
 
         <span className="text-sm font-semibold text-slate-300">
