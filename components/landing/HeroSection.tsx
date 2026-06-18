@@ -36,7 +36,7 @@ const STATS = [
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden" style={{ background: "#060d1a" }}>
 
       {/* Background grid */}
       <div

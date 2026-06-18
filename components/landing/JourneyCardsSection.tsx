@@ -9,7 +9,7 @@ const JOURNEYS = [
     icon: "🍬",
     stepCount: 11,
     href: "/learn",
-    accentGradient: "from-cyan-500/10 to-transparent",
+    accentGradient: "from-cyan-500/15 to-transparent",
     borderColor: "border-cyan-500/25",
     dotColor: "bg-cyan-400",
     textAccent: "text-cyan-400",
@@ -23,7 +23,7 @@ const JOURNEYS = [
     icon: "🫁",
     stepCount: 12,
     href: "/learn",
-    accentGradient: "from-emerald-500/10 to-transparent",
+    accentGradient: "from-emerald-500/15 to-transparent",
     borderColor: "border-emerald-500/25",
     dotColor: "bg-emerald-400",
     textAccent: "text-emerald-400",
@@ -33,21 +33,11 @@ const JOURNEYS = [
 
 export default function JourneyCardsSection() {
   return (
-    <section id="journeys" className="relative py-20 px-6 overflow-hidden">
-
-      {/* Ambient glow — cyan at top */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background: "radial-gradient(ellipse at 50% 0%, rgba(34,211,238,0.07) 0%, transparent 70%)",
-        }}
-      />
-
-      <div className="relative max-w-5xl mx-auto">
+    <section id="journeys" className="py-20 px-6" style={{ background: "#0a1628" }}>
+      <div className="max-w-5xl mx-auto">
 
         {/* Section header */}
-        <div className="mb-12">
+        <div className="mb-10">
           <div className="inline-flex items-center gap-2 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" aria-hidden="true" />
             <span className="text-xs font-semibold text-cyan-400 uppercase tracking-widest">
@@ -57,23 +47,23 @@ export default function JourneyCardsSection() {
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
             Follow molecules through the body
           </h2>
-          <p className="text-sm text-slate-400 max-w-lg leading-relaxed">
+          <p className="text-sm text-slate-300 max-w-lg leading-relaxed">
             Two journeys are live. More are in development — each follows the same
             step-by-step, scale-aware format from organism to molecule.
           </p>
         </div>
 
         {/* Journey panels — 2 col on md+, stacked on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {JOURNEYS.map((j) => (
             <Link
               key={j.id}
               href={j.href}
-              className={`group relative flex flex-col rounded-2xl border bg-white/3 overflow-hidden hover:bg-white/5 transition-all duration-200 ${j.borderColor}`}
+              className={`group relative flex flex-col rounded-2xl border bg-white/4 overflow-hidden hover:bg-white/6 transition-all duration-200 ${j.borderColor}`}
             >
               {/* Top accent gradient */}
               <div
-                className={`absolute top-0 left-0 right-0 h-32 bg-gradient-to-b ${j.accentGradient} pointer-events-none`}
+                className={`absolute top-0 left-0 right-0 h-28 bg-gradient-to-b ${j.accentGradient} pointer-events-none`}
                 aria-hidden="true"
               />
 
@@ -89,7 +79,7 @@ export default function JourneyCardsSection() {
                     <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${j.dotColor}`} aria-hidden="true" />
                     <h3 className="text-base font-semibold text-white leading-snug">{j.title}</h3>
                   </div>
-                  <p className="text-sm text-slate-400 leading-relaxed">{j.description}</p>
+                  <p className="text-sm text-slate-300 leading-relaxed">{j.description}</p>
                 </div>
               </div>
 
@@ -100,8 +90,8 @@ export default function JourneyCardsSection() {
                   <div className="absolute inset-x-0 top-[5px] h-px bg-white/10" aria-hidden="true" />
                   {j.timeline.map((step) => (
                     <div key={step} className="relative z-10 flex flex-col items-center gap-1.5">
-                      <div className={`w-2.5 h-2.5 rounded-full ${j.dotColor} ring-2 ring-[#060d1a]`} />
-                      <span className="text-[10px] text-slate-500 leading-none whitespace-nowrap">{step}</span>
+                      <div className={`w-2.5 h-2.5 rounded-full ${j.dotColor} ring-2 ring-[#0a1628]`} />
+                      <span className="text-[10px] text-slate-400 leading-none whitespace-nowrap">{step}</span>
                     </div>
                   ))}
                 </div>
@@ -109,7 +99,7 @@ export default function JourneyCardsSection() {
 
               {/* Panel footer */}
               <div className="relative flex items-center justify-between px-6 py-4 mt-auto border-t border-white/6">
-                <span className="text-xs text-slate-500">{j.stepCount} steps</span>
+                <span className="text-xs text-slate-400">{j.stepCount} steps</span>
                 <span className={`flex items-center gap-1.5 text-xs font-semibold ${j.textAccent} group-hover:brightness-110 transition-all`}>
                   Start journey
                   <svg
