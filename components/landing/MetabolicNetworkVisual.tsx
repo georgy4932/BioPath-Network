@@ -33,7 +33,7 @@ export default function MetabolicNetworkVisual() {
         <line x1="200" y1="315" x2="360" y2="120" stroke="#475569" strokeWidth="1" strokeOpacity="0.25" strokeDasharray="4 3" />
 
         {/* ── Krebs halo (animated glow) ── */}
-        <circle cx="360" cy="120" r="38" fill="#7c3aed" fillOpacity="0.1" className="krebs-glow-animated" />
+        <circle cx="360" cy="120" r="38" fill="#7c3aed" fillOpacity="0.1" stroke="#a78bfa" strokeWidth="1" strokeOpacity="0.3" className="krebs-glow-animated" />
         <circle cx="360" cy="120" r="28" fill="#7c3aed" fillOpacity="0.06" />
 
         {/* ── Nodes ── */}

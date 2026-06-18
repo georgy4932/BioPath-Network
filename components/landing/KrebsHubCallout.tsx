@@ -1,22 +1,15 @@
 export default function KrebsHubCallout() {
   return (
-    <section id="about" className="relative py-24 px-6 overflow-hidden">
-
-      {/* Ambient glow — violet centered */}
+    <section id="about" className="py-20 px-6" style={{ background: "#060d1a" }}>
       <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background: "radial-gradient(ellipse at 50% 50%, rgba(124,58,237,0.12) 0%, transparent 65%)",
-        }}
-      />
-
-      <div className="relative max-w-4xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-12 items-center md:items-start">
+        className="max-w-4xl mx-auto rounded-2xl border border-violet-500/30 p-8 md:p-12"
+        style={{ background: "#0d1526" }}
+      >
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start">
 
           {/* Hub diagram — large, animated */}
           <div className="flex-shrink-0 mx-auto md:mx-0" aria-hidden="true">
-            <svg viewBox="0 0 140 140" className="w-44 h-44 md:w-56 md:h-56">
+            <svg viewBox="0 0 140 140" className="w-40 h-40 md:w-48 md:h-48">
               {/* Outer orbit */}
               <circle cx="70" cy="70" r="50" fill="none" stroke="#7c3aed" strokeWidth="1" strokeOpacity="0.2" />
 
@@ -37,7 +30,7 @@ export default function KrebsHubCallout() {
               <circle cx="10"  cy="80"  r="4"   fill="#0f172a" stroke="#475569" strokeWidth="1.5" strokeOpacity="0.7" />
 
               {/* Hub glow — animated */}
-              <circle cx="70" cy="70" r="28" fill="#7c3aed" fillOpacity="0.15" className="krebs-glow-animated" />
+              <circle cx="70" cy="70" r="28" fill="#7c3aed" fillOpacity="0.15" stroke="#a78bfa" strokeWidth="1" strokeOpacity="0.4" className="krebs-glow-animated" />
               <circle cx="70" cy="70" r="18" fill="#1e1040" stroke="#a78bfa" strokeWidth="2" />
 
               {/* Hub label */}
@@ -47,7 +40,7 @@ export default function KrebsHubCallout() {
           </div>
 
           {/* Text */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4">
             <div className="inline-flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-cyan-400" aria-hidden="true" />
               <span className="text-xs font-semibold text-cyan-400 uppercase tracking-widest">
@@ -55,7 +48,7 @@ export default function KrebsHubCallout() {
               </span>
             </div>
 
-            <h2 className="text-2xl md:text-3xl font-bold text-white leading-snug">
+            <h2 className="text-xl md:text-2xl font-bold text-white leading-snug">
               The Krebs cycle is the hub of metabolism
             </h2>
 
